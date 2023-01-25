@@ -13,7 +13,11 @@ export const ThemeContext = React.createContext<ThemeContextValues>({
   setTheme: () => {},
 });
 
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
+export default function ThemeProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [theme, setTheme] = React.useState<Theme | null>(null);
 
   React.useEffect(() => {
