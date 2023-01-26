@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link, HeadFC, PageProps, graphql } from "gatsby";
-import { useI18next } from "gatsby-plugin-react-i18next";
+import { useI18next, Trans } from "gatsby-plugin-react-i18next";
 import Layout from "../components/Layout";
 
 const codeStyles = {
@@ -15,19 +15,11 @@ const NotFoundPage: React.FC<PageProps> = () => {
   const { t } = useI18next();
   return (
     <Layout>
-      <h1>Page not found</h1>
+      <h1>{t("title")}</h1>
       <p>
-        Sorry 😔, we couldn’t find what you were looking for.
+        {t("p")}
         <br />
-        {process.env.NODE_ENV === "development" ? (
-          <>
-            <br />
-            Try creating a page in <code style={codeStyles}>src/pages/</code>.
-            <br />
-          </>
-        ) : null}
-        <br />
-        <Link to="/">Go home</Link>.
+        <Link to="/">{t("goHomeLink")}</Link>.
       </p>
     </Layout>
   );
@@ -35,12 +27,16 @@ const NotFoundPage: React.FC<PageProps> = () => {
 
 export default NotFoundPage;
 
-export const Head: HeadFC = () => <title>Not found</title>;
+export const Head: HeadFC = () => (
+  <title>
+    <Trans>head</Trans>
+  </title>
+);
 
 export const query = graphql`
   query ($language: String!) {
     locales: allLocale(
-      filter: { ns: { in: ["common"] }, language: { eq: $language } }
+      filter: { ns: { in: ["404"] }, language: { eq: $language } }
     ) {
       edges {
         node {

@@ -18,6 +18,7 @@ export default function Layout({ children }: PropsWithChildren) {
     <>
       <header>
         <div>LOGO</div>
+        <hr />
         <nav>
           <ul>
             {routes.map((route) => (
@@ -28,6 +29,7 @@ export default function Layout({ children }: PropsWithChildren) {
               </li>
             ))}
           </ul>
+          <hr />
 
           <ul className="languages">
             {languages.map((lng) => (
@@ -45,6 +47,7 @@ export default function Layout({ children }: PropsWithChildren) {
               </li>
             ))}
           </ul>
+          <hr />
           <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
             {theme}
           </button>
