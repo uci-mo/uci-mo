@@ -1,0 +1,4 @@
+[build.environment]
+  NODE_VERSION = "v18.13.0"
+[build]
+  publish = "public"

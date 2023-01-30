@@ -1,4 +1,9 @@
 {
   "seo": "Home",
-  "title": "Hi people"
+  "title": "Hi people",
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "blog": "Blog"
+  }
 }

@@ -1,6 +1,22 @@
+import { graphql } from "gatsby";
 import React from "react";
-import Layout from "../components/Layout";
 
 export default function About() {
-  return <Layout>About</Layout>;
+  return <>About</>;
 }
+
+export const query = graphql`
+  query ($language: String!) {
+    locales: allLocale(
+      filter: { ns: { in: ["common"] }, language: { eq: $language } }
+    ) {
+      edges {
+        node {
+          ns
+          data
+          language
+        }
+      }
+    }
+  }
+`;

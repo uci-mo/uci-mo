@@ -1,6 +1,5 @@
 import React from "react";
 import { graphql, HeadFC, PageProps } from "gatsby";
-import Layout from "../components/Layout";
 import { useI18next } from "gatsby-plugin-react-i18next";
 
 const docLinks = [
@@ -64,7 +63,7 @@ const links = [
 const IndexPage: React.FC<PageProps> = () => {
   const { t } = useI18next();
   return (
-    <Layout>
+    <>
       <h1>
         <span>-- {t("title")} 🎉🎉🎉</span>
       </h1>
@@ -96,7 +95,7 @@ const IndexPage: React.FC<PageProps> = () => {
           </li>
         ))}
       </ul>
-    </Layout>
+    </>
   );
 };
 

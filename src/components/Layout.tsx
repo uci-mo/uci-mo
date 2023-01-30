@@ -2,16 +2,15 @@ import React, { PropsWithChildren, useContext } from "react";
 import { Link as Linki18, useI18next } from "gatsby-plugin-react-i18next";
 import { Link } from "gatsby";
 import { ThemeContext } from "./ThemeProvider";
-import "../styles/global.css";
 
-const routes: { to: string; text: string }[] = [
-  { to: "/", text: "home" },
-  { to: "/about", text: "about" },
-  { to: "/blog", text: "blog" },
+const routes: { to: string; t: string }[] = [
+  { to: "/", t: "nav.home" },
+  { to: "/about", t: "nav.about" },
+  { to: "/blog", t: "nav.blog" },
 ];
 
 export default function Layout({ children }: PropsWithChildren) {
-  const { languages, originalPath, i18n } = useI18next();
+  const { t, languages, originalPath, i18n } = useI18next();
   const { theme, setTheme } = useContext(ThemeContext);
 
   return (
@@ -24,7 +23,7 @@ export default function Layout({ children }: PropsWithChildren) {
             {routes.map((route) => (
               <li key={route.to}>
                 <Link to={route.to} activeClassName="">
-                  {route.text}
+                  {t(route.t)}
                 </Link>
               </li>
             ))}

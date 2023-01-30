@@ -35,42 +35,55 @@ const config: GatsbyConfig = {
         icon: "./src/images/icon.png",
       },
     },
-    // {
-    //   resolve: "gatsby-plugin-mdx",
-    //   options: {
-    //     defaultLayouts: {
-    //       default: require.resolve("./src/components/Layout.tsx"),
-    //     },
-    //   },
-    // },
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "images",
-        path: `${__dirname}/src/images/`,
+        path: `${__dirname}/src/images`,
       },
     },
     {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "pages",
-        path: `${__dirname}/src/pages/`,
+        path: `${__dirname}/src/pages`,
       },
     },
-    // {
-    //   resolve: "gatsby-source-filesystem",
-    //   options: {
-    //     name: "posts",
-    //     path: `${__dirname}/src/posts/`,
-    //   },
-    // },
     {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "locale",
-        path: `${__dirname}/src/locales/`,
+        path: `${__dirname}/src/locales`,
+      },
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "posts",
+        path: `${__dirname}/src/posts`,
+      },
+    },
+    {
+      resolve: "gatsby-plugin-mdx",
+      options: {
+        extensions: [`.mdx`, `.md`],
+        // defaultLayouts: {
+        //   default: require.resolve("./src/components/Layout.tsx"),
+        // },
+        // gatsbyRemarkPlugins: [
+        //   {
+        //     resolve: `gatsby-remark-images`,
+        //     options: {
+        //       maxWidth: 590,
+        //     },
+        //   },
+        // ],
+        // mdxOptions: {
+        //   remarkPlugins: [],
+        //   rehypePlugins: [],
+        // },
       },
     },
     {
