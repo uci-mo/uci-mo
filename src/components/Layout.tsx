@@ -36,10 +36,15 @@ export default function Layout({ children }: PropsWithChildren) {
                 <Linki18
                   to={originalPath}
                   language={lng}
-                  style={{
-                    textDecoration:
-                      i18n.resolvedLanguage === lng ? "underline" : "none",
-                  }}
+                  style={
+                    i18n.resolvedLanguage === lng
+                      ? {
+                          textDecoration: "underline",
+                          borderLeft: "10px solid red",
+                          pointerEvents: "none",
+                        }
+                      : {}
+                  }
                 >
                   {lng}
                 </Linki18>

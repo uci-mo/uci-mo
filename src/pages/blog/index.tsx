@@ -5,21 +5,31 @@ import React from "react";
 const BlogIndexPage: React.FC<PageProps<Queries.BlogIndexPageQuery>> = ({
   data,
 }) => {
-  const { t } = useI18next();
-  const posts = data.allFile.nodes;
+  const { t, language } = useI18next();
+  const posts = data.allMdx.edges
+    .filter((edge) =>
+      edge.node.internal?.contentFilePath?.endsWith(`/index.${language}.mdx`)
+    )
+    .map((edge) => edge.node);
 
   return (
     <>
       <h1>{t("title")}</h1>
       <p>{t("p")}</p>
       <ul>
-        {posts.map((post) => (
-          <li key={post.id}>
-            <Link to={post.name} activeClassName="">
-              {post.name}
-            </Link>
-          </li>
-        ))}
+        {posts.map(({ id, frontmatter }) => {
+          const slug = frontmatter?.slug;
+          const title = frontmatter?.title;
+          if (!(id && slug && title)) return null;
+
+          return (
+            <li key={id}>
+              <Link to={slug} activeClassName="">
+                {title}
+              </Link>
+            </li>
+          );
+        })}
       </ul>
       <Link to="/">{t("goHomeLink")}</Link>.
     </>
@@ -48,10 +58,18 @@ export const query = graphql`
       }
     }
 
-    allFile(filter: { sourceInstanceName: { eq: "posts" } }) {
-      nodes {
-        name
-        id
+    allMdx {
+      edges {
+        node {
+          id
+          frontmatter {
+            slug
+            title
+          }
+          internal {
+            contentFilePath
+          }
+        }
       }
     }
   }

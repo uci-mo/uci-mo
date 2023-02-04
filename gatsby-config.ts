@@ -1,7 +1,7 @@
 import type { GatsbyConfig } from "gatsby";
 
-const languages = ["en", "sr"] as const;
-const defaultLanguage = languages[0];
+export const languages = ["en", "sr"] as const;
+export const defaultLanguage = languages[0];
 const siteUrl = "https://uci-mo.netlify.app/";
 
 const config: GatsbyConfig = {
@@ -68,7 +68,6 @@ const config: GatsbyConfig = {
     {
       resolve: "gatsby-plugin-mdx",
       options: {
-        extensions: [`.mdx`, `.md`],
         // defaultLayouts: {
         //   default: require.resolve("./src/components/Layout.tsx"),
         // },
@@ -98,10 +97,18 @@ const config: GatsbyConfig = {
           fallbackLng: defaultLanguage,
           supportedLngs: languages,
           defaultNS: "common",
-          interpolation: {
-            escapeValue: false, // not needed for react as it escapes by default
-          },
         },
+        pages: [
+          {
+            matchPath: "/:lang?/404",
+            getLanguageFromPath: false,
+          },
+          {
+            matchPath: "/:lang?/blog/:uid",
+            getLanguageFromPath: true,
+            excludeLanguages: languages,
+          },
+        ],
       },
     },
   ],

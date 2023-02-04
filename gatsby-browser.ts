@@ -1,11 +1,10 @@
 import { cloneElement, createElement, isValidElement } from "react";
-
-import "./src/styles/global.css";
 import ThemeProvider from "./src/components/ThemeProvider";
 import Layout from "./src/components/Layout";
+import "./src/styles/global.css";
 
 export const wrapPageElement = ({ element, props }) => {
-  // return <ThemeProvider {...props}>{element}</ThemeProvider>;
+  // console.log("\n------------------\nelement:\n", element,\n------------------);
 
   return cloneElement(
     element, // I18nextProvider

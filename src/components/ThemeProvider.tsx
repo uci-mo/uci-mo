@@ -1,7 +1,7 @@
 import React from "react";
 
 type Theme = "dark" | "light";
-export const themeKey = "using-vanilla-extract-pref";
+export const themeKey = "THEME";
 
 interface ThemeContextValues {
   theme: Theme | null;
