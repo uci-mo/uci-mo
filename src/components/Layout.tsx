@@ -1,6 +1,12 @@
-import React, { PropsWithChildren, useContext } from "react";
+import React, {
+  PropsWithChildren,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { Link as Linki18, useI18next } from "gatsby-plugin-react-i18next";
 import { Link } from "gatsby";
+import { useTransition, animated, useSpringRef } from "react-spring";
 import { ThemeContext } from "./ThemeProvider";
 
 const routes: { to: string; t: string }[] = [
@@ -9,9 +15,32 @@ const routes: { to: string; t: string }[] = [
   { to: "/blog", t: "nav.blog" },
 ];
 
-export default function Layout({ children }: PropsWithChildren) {
+export default function Layout(props: PropsWithChildren<any>) {
+  const { children, location } = props;
+  console.log("props", props);
   const { t, languages, originalPath, i18n } = useI18next();
   const { theme, setTheme } = useContext(ThemeContext);
+  // const [newChildren, setNewChildren] = useState(null);
+
+  // useEffect(() => {
+  //   setNewChildren(children);
+  // }, [children]);
+
+  // const transRef = useSpringRef();
+  const transitions = useTransition(children, {
+    // ref: transRef,
+    keys: null,
+    from: { opacity: 0, transform: "translate3d(100%,0,0)" },
+    enter: { opacity: 1, transform: "translate3d(0%,0,0)" },
+    leave: { opacity: 0, transform: "translate3d(-50%,0,0)" },
+    config: {
+      duration: 1200,
+    },
+  });
+
+  // useEffect(() => {
+  //   transRef.start();
+  // }, [location]);
 
   return (
     <>
@@ -59,7 +88,15 @@ export default function Layout({ children }: PropsWithChildren) {
       </header>
       <hr />
 
-      <main>{children}</main>
+      <main
+        style={{ overflowX: "hidden", display: "grid", gridTemplate: '"main"' }}
+      >
+        {transitions((style, passedChildren) => (
+          <animated.div style={{ ...style, gridArea: "main" }}>
+            {passedChildren}
+          </animated.div>
+        ))}
+      </main>
 
       <hr />
       <footer>

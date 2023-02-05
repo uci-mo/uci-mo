@@ -2,6 +2,7 @@ import type { GatsbyConfig } from "gatsby";
 
 export const languages = ["en", "sr"] as const;
 export const defaultLanguage = languages[0];
+// const layoutComponentPath = "./src/components/Layout.tsx";
 const siteUrl = "https://uci-mo.netlify.app/";
 
 const config: GatsbyConfig = {
@@ -69,7 +70,7 @@ const config: GatsbyConfig = {
       resolve: "gatsby-plugin-mdx",
       options: {
         // defaultLayouts: {
-        //   default: require.resolve("./src/components/Layout.tsx"),
+        //   default: require.resolve(layoutComponentPath),
         // },
         // gatsbyRemarkPlugins: [
         //   {
