@@ -1,12 +1,6 @@
-import React, {
-  PropsWithChildren,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
-import { Link as Linki18, useI18next } from "gatsby-plugin-react-i18next";
-import { Link } from "gatsby";
-import { useTransition, animated, useSpringRef } from "react-spring";
+import React, { PropsWithChildren, useContext } from "react";
+import { Link as LinkI18, useI18next } from "gatsby-plugin-react-i18next";
+import { useTransition, animated } from "react-spring";
 import { ThemeContext } from "./ThemeProvider";
 
 const routes: { to: string; t: string }[] = [
@@ -14,21 +8,17 @@ const routes: { to: string; t: string }[] = [
   { to: "/about", t: "nav.about" },
   { to: "/blog", t: "nav.blog" },
 ];
+// revisit Gatsby SLICE later: https://v5.gatsbyjs.com/docs/reference/built-in-components/gatsby-slice/
+// https://www.gatsbyjs.com/blog/how-to-use-function-props-with-gatsbys-slice-api/
+// with translations: https://www.gatsbyjs.com/blog/using-the-slice-api-for-internationalization-i18n/
 
 export default function Layout(props: PropsWithChildren<any>) {
   const { children, location } = props;
   console.log("props", props);
   const { t, languages, originalPath, i18n } = useI18next();
   const { theme, setTheme } = useContext(ThemeContext);
-  // const [newChildren, setNewChildren] = useState(null);
 
-  // useEffect(() => {
-  //   setNewChildren(children);
-  // }, [children]);
-
-  // const transRef = useSpringRef();
   const transitions = useTransition(children, {
-    // ref: transRef,
     keys: null,
     from: { opacity: 0, transform: "translate3d(100%,0,0)" },
     enter: { opacity: 1, transform: "translate3d(0%,0,0)" },
@@ -37,10 +27,6 @@ export default function Layout(props: PropsWithChildren<any>) {
       duration: 1200,
     },
   });
-
-  // useEffect(() => {
-  //   transRef.start();
-  // }, [location]);
 
   return (
     <>
@@ -51,9 +37,9 @@ export default function Layout(props: PropsWithChildren<any>) {
           <ul>
             {routes.map((route) => (
               <li key={route.to}>
-                <Link to={route.to} activeClassName="">
+                <LinkI18 to={route.to} activeClassName="">
                   {t(route.t)}
-                </Link>
+                </LinkI18>
               </li>
             ))}
           </ul>
@@ -62,7 +48,7 @@ export default function Layout(props: PropsWithChildren<any>) {
           <ul className="languages">
             {languages.map((lng) => (
               <li key={lng}>
-                <Linki18
+                <LinkI18
                   to={originalPath}
                   language={lng}
                   style={
@@ -76,7 +62,7 @@ export default function Layout(props: PropsWithChildren<any>) {
                   }
                 >
                   {lng}
-                </Linki18>
+                </LinkI18>
               </li>
             ))}
           </ul>
@@ -87,7 +73,8 @@ export default function Layout(props: PropsWithChildren<any>) {
         </nav>
       </header>
       <hr />
-
+      {/* scrolling transition to prevous position when clicking Back */}
+      {/* https://janessagarrow.com/blog/gatsby-framer-motion-page-transitions/#bonus */}
       <main
         style={{ overflowX: "hidden", display: "grid", gridTemplate: '"main"' }}
       >
