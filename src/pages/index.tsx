@@ -65,7 +65,7 @@ const IndexPage: React.FC<PageProps> = () => {
   return (
     <>
       <h1>
-        <span>-- {t("title")} 🎉🎉🎉</span>
+        <span>-- {t("page.home.title")} 🎉🎉🎉</span>
       </h1>
       <h4>Doc links</h4>
       <ul>
@@ -103,11 +103,12 @@ export default IndexPage;
 
 export const Head: HeadFC = () => <title>Home Page</title>;
 
+// query specific common.json file with translations:
+// filter: { ns: { in: ["common"] }, language: { eq: $language } }
+// but this is useless here, since during page transition you can see text being replaced
 export const query = graphql`
   query ($language: String!) {
-    locales: allLocale(
-      filter: { ns: { in: ["common"] }, language: { eq: $language } }
-    ) {
+    locales: allLocale(filter: { language: { eq: $language } }) {
       edges {
         node {
           ns

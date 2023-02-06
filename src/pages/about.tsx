@@ -7,9 +7,7 @@ export default function About() {
 
 export const query = graphql`
   query ($language: String!) {
-    locales: allLocale(
-      filter: { ns: { in: ["common"] }, language: { eq: $language } }
-    ) {
+    locales: allLocale(filter: { language: { eq: $language } }) {
       edges {
         node {
           ns

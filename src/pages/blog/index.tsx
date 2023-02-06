@@ -14,8 +14,8 @@ const BlogIndexPage: React.FC<PageProps<Queries.BlogIndexPageQuery>> = ({
 
   return (
     <>
-      <h1>{t("title")}</h1>
-      <p>{t("p")}</p>
+      <h1>{t("page.blog.title")}</h1>
+      <p>{t("page.blog.p")}</p>
       <ul>
         {posts.map(({ id, frontmatter }) => {
           const slug = frontmatter?.slug;
@@ -31,7 +31,7 @@ const BlogIndexPage: React.FC<PageProps<Queries.BlogIndexPageQuery>> = ({
           );
         })}
       </ul>
-      <Link to="/">{t("goHomeLink")}</Link>.
+      <Link to="/">{t("page.blog.goHomeLink")}</Link>.
     </>
   );
 };
@@ -47,7 +47,7 @@ export const Head: HeadFC = () => (
 export const query = graphql`
   query BlogIndexPage($language: String!) {
     locales: allLocale(
-      filter: { ns: { in: ["blog", "common"] }, language: { eq: $language } }
+      filter: { ns: { in: ["common"] }, language: { eq: $language } }
     ) {
       edges {
         node {

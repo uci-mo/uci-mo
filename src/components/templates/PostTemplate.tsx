@@ -24,9 +24,7 @@ export const query = graphql`
         title
       }
     }
-    locales: allLocale(
-      filter: { ns: { in: ["common"] }, language: { eq: $language } }
-    ) {
+    locales: allLocale(filter: { language: { eq: $language } }) {
       edges {
         node {
           ns

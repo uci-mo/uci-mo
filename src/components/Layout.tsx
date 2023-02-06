@@ -37,7 +37,14 @@ export default function Layout(props: PropsWithChildren<any>) {
           <ul>
             {routes.map((route) => (
               <li key={route.to}>
-                <LinkI18 to={route.to} activeClassName="">
+                <LinkI18
+                  to={route.to}
+                  activeClassName=""
+                  activeStyle={{
+                    textDecoration: "underline",
+                    borderLeft: "10px solid red",
+                  }}
+                >
                   {t(route.t)}
                 </LinkI18>
               </li>

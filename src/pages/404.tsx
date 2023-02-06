@@ -6,11 +6,11 @@ const NotFoundPage: React.FC<PageProps> = () => {
   const { t } = useI18next();
   return (
     <>
-      <h1>{t("title")}</h1>
+      <h1>{t("page.404.title")}</h1>
       <p>
-        {t("p")}
+        {t("page.404.p")}
         <br />
-        <Link to="/">{t("goHomeLink")}</Link>.
+        <Link to="/">{t("page.404.goHomeLink")}</Link>.
       </p>
     </>
   );
@@ -26,9 +26,7 @@ export const Head: HeadFC = () => (
 
 export const query = graphql`
   query ($language: String!) {
-    locales: allLocale(
-      filter: { ns: { in: ["404", "common"] }, language: { eq: $language } }
-    ) {
+    locales: allLocale(filter: { language: { eq: $language } }) {
       edges {
         node {
           ns

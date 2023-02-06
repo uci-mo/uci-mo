@@ -1,9 +1,25 @@
 {
-  "seo": "Home",
-  "title": "Hi people",
   "nav": {
     "home": "Home",
     "about": "About",
     "blog": "Blog"
+  },
+  "page": {
+    "home": {
+      "seo": "Home",
+      "title": "Hi people"
+    },
+    "blog": {
+      "head": "Blog",
+      "title": "Blog",
+      "p": "Welcome to my blog!",
+      "goHomeLink": "Go home"
+    },
+    "404": {
+      "head": "Not found",
+      "title": "Page not found",
+      "p": "Sorry 😔, we couldn’t find what you were looking for.",
+      "goHomeLink": "Go home"
+    }
   }
 }
