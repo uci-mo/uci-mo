@@ -1,5 +1,5 @@
 import { cloneElement, createElement, isValidElement } from "react";
-import ThemeProvider from "./src/components/ThemeProvider";
+import ThemeProvider from "./src/components/Layout/ThemeProvider";
 import Layout from "./src/components/Layout";
 import "./src/styles/global.css";
 
