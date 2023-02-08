@@ -1,9 +1,24 @@
-import React, { PropsWithChildren, useRef, useState } from "react";
+import React, {
+  PropsWithChildren,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { useTransition, animated } from "react-spring";
 
 export default function Main({ children }: PropsWithChildren) {
   const mainRef = useRef<HTMLMediaElement>(null);
   const [mainHeight, setMainHeight] = useState<number | "auto">("auto");
+
+  const updateMainHeight = useCallback(() => {
+    setMainHeight(mainRef.current?.offsetHeight || "auto");
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("resize", updateMainHeight);
+    return () => window.removeEventListener("resize", updateMainHeight);
+  }, []);
 
   const transitions = useTransition(children, {
     keys: null,
@@ -13,9 +28,10 @@ export default function Main({ children }: PropsWithChildren) {
     config: {
       duration: 400,
     },
-    onStart: () => setMainHeight(mainRef.current?.offsetHeight || "auto"),
-    onDestroyed: () => setMainHeight(mainRef.current?.offsetHeight || "auto"),
+    onStart: updateMainHeight,
+    onDestroyed: updateMainHeight,
   });
+
   return (
     <div
       style={{
