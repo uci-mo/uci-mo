@@ -2,6 +2,7 @@ import { graphql, HeadFC, Link, PageProps } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { useI18next, Trans } from "gatsby-plugin-react-i18next";
 import React from "react";
+import { formatIntlDate } from "../../utils/date";
 
 const BlogIndexPage: React.FC<PageProps<Queries.BlogIndexPageQuery>> = ({
   data,
@@ -21,7 +22,11 @@ const BlogIndexPage: React.FC<PageProps<Queries.BlogIndexPageQuery>> = ({
         {posts.map(({ id, frontmatter }) => {
           const slug = frontmatter?.slug;
           const title = frontmatter?.title;
-          const date = frontmatter?.date;
+          const date = formatIntlDate(
+            frontmatter?.date as string | undefined,
+            language
+          );
+          const tags = frontmatter?.tags || [];
           if (!(id && slug && title)) return null;
 
           const image = frontmatter?.thumb?.childImageSharp?.gatsbyImageData;
@@ -31,6 +36,11 @@ const BlogIndexPage: React.FC<PageProps<Queries.BlogIndexPageQuery>> = ({
               <div>
                 <h3>{title}</h3>
                 <p>{date}</p>
+                <p>
+                  {tags.map((tag) => (
+                    <b>#{tag} </b>
+                  ))}
+                </p>
                 <div>{image && <GatsbyImage image={image} alt={title} />}</div>
               </div>
             </Link>

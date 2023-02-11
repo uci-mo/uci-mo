@@ -1,6 +1,6 @@
 import path from "path";
 import { GatsbyNode } from "gatsby";
-import { defaultLanguage, languages } from "./gatsby-config";
+import { languages, defaultLanguage } from "./src/utils/language";
 
 const postTemplate = path.resolve(
   `./src/components/templates/PostTemplate.tsx`
@@ -19,10 +19,8 @@ export const createPages: GatsbyNode["createPages"] = async ({
         nodes {
           id
           frontmatter {
-            title
-            date
             slug
-            tags
+            date
           }
           internal {
             contentFilePath
@@ -55,8 +53,6 @@ export const createPages: GatsbyNode["createPages"] = async ({
         // You can use the values in this context in our page layout component
         context: {
           id: node.id,
-          contentFilePath: node.internal.contentFilePath,
-          ...node.frontmatter,
         },
       });
     } else {
@@ -64,3 +60,5 @@ export const createPages: GatsbyNode["createPages"] = async ({
     }
   });
 };
+
+// creating Tags pages: https://www.gatsbyjs.com/docs/adding-tags-and-categories-to-blog-posts/

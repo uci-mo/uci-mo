@@ -3,6 +3,7 @@ import { graphql } from "gatsby";
 import { MDXProvider } from "@mdx-js/react";
 import { Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
+import { formatIntlDate } from "../../utils/date";
 
 const shortcodes = { Link }; // Provide common components here
 
@@ -11,16 +12,26 @@ export default function PostTemplate({
   children,
 }: PropsWithChildren<{ data: Queries.PostTemplateQuery }>) {
   const title = data.mdx?.frontmatter?.title;
-  const date = data.mdx?.frontmatter?.date;
+  const date = formatIntlDate(
+    data.mdx?.frontmatter?.date as string | undefined,
+    data.locales.edges[0].node.language as string | undefined
+  );
+  const tags = data.mdx?.frontmatter?.tags || [];
   const image =
     data.mdx?.frontmatter?.featuredImg?.childImageSharp?.gatsbyImageData;
 
-  console.log("data", data);
+  // console.log("data", data);
+  // console.log("post children", children);
 
   return (
     <>
       <h1>{title}</h1>
       <p>{date}</p>
+      <p>
+        {tags.map((tag) => (
+          <b key={tag}>#{tag} </b>
+        ))}
+      </p>
       {image && (
         <GatsbyImage
           image={image}

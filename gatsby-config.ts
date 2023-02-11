@@ -1,7 +1,6 @@
 import type { GatsbyConfig } from "gatsby";
+import { languages, defaultLanguage } from "./src/utils/language";
 
-export const languages = ["en", "sr"] as const;
-export const defaultLanguage = languages[0];
 const siteUrl = "https://uci-mo.netlify.app/";
 
 const config: GatsbyConfig = {

@@ -8,8 +8,8 @@ import Main from "./Main";
 // with translations: https://www.gatsbyjs.com/blog/using-the-slice-api-for-internationalization-i18n/
 
 export default function Layout(props: PropsWithChildren<any>) {
-  const { children, location } = props;
-  console.log("props", props);
+  const { children } = props;
+  console.log("LayoutProps", props);
 
   return (
     <>
