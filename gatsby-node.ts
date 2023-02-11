@@ -19,7 +19,10 @@ export const createPages: GatsbyNode["createPages"] = async ({
         nodes {
           id
           frontmatter {
+            title
+            date
             slug
+            tags
           }
           internal {
             contentFilePath
@@ -50,7 +53,11 @@ export const createPages: GatsbyNode["createPages"] = async ({
         // Provide the path to the MDX content file so webpack can pick it up and transform it into JSX
         component: `${postTemplate}?__contentFilePath=${node.internal.contentFilePath}`,
         // You can use the values in this context in our page layout component
-        context: { id: node.id },
+        context: {
+          id: node.id,
+          contentFilePath: node.internal.contentFilePath,
+          ...node.frontmatter,
+        },
       });
     } else {
       reporter.panicOnBuild("Post node is incomplete");

@@ -24,6 +24,7 @@ globalStyle(`.dark`, {
 globalStyle(`html`, {
   background: rootColors.light.bg,
   color: rootColors.light.color,
+  overflowY: "scroll",
 });
 
 globalStyle(`html, body`, {

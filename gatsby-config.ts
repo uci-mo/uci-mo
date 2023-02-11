@@ -19,9 +19,8 @@ const config: GatsbyConfig = {
   // Learn more at: https://gatsby.dev/graphql-typegen
   graphqlTypegen: true,
   plugins: [
-    "gatsby-plugin-vanilla-extract",
     // "gatsby-plugin-google-gtag",
-    "gatsby-plugin-image",
+    "gatsby-plugin-vanilla-extract",
     "gatsby-plugin-sitemap",
     {
       resolve: "gatsby-plugin-manifest",
@@ -33,6 +32,18 @@ const config: GatsbyConfig = {
         theme_color: "#663399",
         display: "minimal-ui",
         icon: "./src/images/icon.png",
+      },
+    },
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        defaults: {
+          formats: [`auto`, `webp`],
+          placeholder: `dominantColor`,
+          quality: 50,
+          breakpoints: [750, 1080, 1366, 1920],
+          backgroundColor: `transparent`,
+        },
       },
     },
     "gatsby-plugin-sharp",
@@ -68,14 +79,14 @@ const config: GatsbyConfig = {
     {
       resolve: "gatsby-plugin-mdx",
       options: {
-        // gatsbyRemarkPlugins: [
-        //   {
-        //     resolve: `gatsby-remark-images`,
-        //     options: {
-        //       maxWidth: 590,
-        //     },
-        //   },
-        // ],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 1200,
+            },
+          },
+        ],
         // mdxOptions: {
         //   remarkPlugins: [],
         //   rehypePlugins: [],

@@ -1,4 +1,5 @@
 import { graphql, HeadFC, Link, PageProps } from "gatsby";
+import { GatsbyImage } from "gatsby-plugin-image";
 import { useI18next, Trans } from "gatsby-plugin-react-i18next";
 import React from "react";
 
@@ -16,21 +17,26 @@ const BlogIndexPage: React.FC<PageProps<Queries.BlogIndexPageQuery>> = ({
     <>
       <h1>{t("page.blog.title")}</h1>
       <p>{t("page.blog.p")}</p>
-      <ul>
+      <div style={{ display: "grid" }}>
         {posts.map(({ id, frontmatter }) => {
           const slug = frontmatter?.slug;
           const title = frontmatter?.title;
+          const date = frontmatter?.date;
           if (!(id && slug && title)) return null;
 
+          const image = frontmatter?.thumb?.childImageSharp?.gatsbyImageData;
+
           return (
-            <li key={id}>
-              <Link to={slug} activeClassName="">
-                {title}
-              </Link>
-            </li>
+            <Link key={id} to={slug} activeClassName="">
+              <div>
+                <h3>{title}</h3>
+                <p>{date}</p>
+                <div>{image && <GatsbyImage image={image} alt={title} />}</div>
+              </div>
+            </Link>
           );
         })}
-      </ul>
+      </div>
       <Link to="/">{t("page.blog.goHomeLink")}</Link>.
     </>
   );
@@ -65,6 +71,19 @@ export const query = graphql`
           frontmatter {
             slug
             title
+            date
+            tags
+            thumb {
+              childImageSharp {
+                gatsbyImageData(
+                  width: 500
+                  placeholder: BLURRED
+                  blurredOptions: { width: 100 }
+                  transformOptions: { cropFocus: CENTER }
+                  aspectRatio: 1.3
+                )
+              }
+            }
           }
           internal {
             contentFilePath

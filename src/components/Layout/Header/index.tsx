@@ -13,8 +13,6 @@ export default function Header() {
 
   return (
     <header>
-      <div>LOGO</div>
-      <hr />
       <nav style={{ display: "flex" }}>
         <ul>
           {routes.map((route) => (
