@@ -1,27 +1,28 @@
 import { globalStyle } from "@vanilla-extract/css";
 import { themeVars } from "./theme.css";
 
+globalStyle(`"*, *::before, *::after"`, {
+  boxSizing: `border-box`,
+});
+
+globalStyle(`html, body`, {
+  height: `100%`,
+  fontSize: `100%`,
+  fontFamily: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
+  margin: 0,
+});
+
+globalStyle(`html`, {
+  overflowY: "scroll",
+});
+
 globalStyle("#___gatsby", {
   isolation: `isolate`,
   padding: themeVars.space.small,
   fontFamily: themeVars.fonts.body,
   background: themeVars.colors.background,
   color: themeVars.colors.text.normal,
-  // minHeight: "100vh",
-});
-
-globalStyle(`*`, {
-  boxSizing: `border-box`,
-  margin: 0,
-});
-globalStyle(`html`, {
-  overflowY: "scroll",
-});
-
-globalStyle(`html, body`, {
-  height: `100%`,
-  fontSize: `18px`,
-  fontFamily: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
+  minHeight: "100%",
 });
 
 globalStyle(`body`, {
