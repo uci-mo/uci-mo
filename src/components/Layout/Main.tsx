@@ -7,6 +7,8 @@ import React, {
 } from "react";
 import { useTransition, animated } from "react-spring";
 
+export const pageTransitionDuration = 400;
+
 export default function Main({ children }: PropsWithChildren) {
   const mainRef = useRef<HTMLMediaElement>(null);
   const [mainHeight, setMainHeight] = useState<number | "auto">("auto");
@@ -26,7 +28,7 @@ export default function Main({ children }: PropsWithChildren) {
     enter: { opacity: 1, transform: "translateX(0) scale(1)" },
     leave: { opacity: 0, transform: "translateX(-150%) scale(1)" },
     config: {
-      duration: 400,
+      duration: pageTransitionDuration,
     },
     onStart: updateMainHeight,
     onDestroyed: updateMainHeight,

@@ -1,4 +1,5 @@
 import React, { PropsWithChildren } from "react";
+import { PageProps } from "gatsby";
 import Footer from "./Footer";
 import Header from "./Header";
 import Main from "./Main";
@@ -7,13 +8,13 @@ import Main from "./Main";
 // https://www.gatsbyjs.com/blog/how-to-use-function-props-with-gatsbys-slice-api/
 // with translations: https://www.gatsbyjs.com/blog/using-the-slice-api-for-internationalization-i18n/
 
-export default function Layout(props: PropsWithChildren<any>) {
-  const { children } = props;
+export default function Layout(props: PropsWithChildren<PageProps>) {
+  const { children, location } = props;
   console.log("LayoutProps", props);
 
   return (
     <>
-      <Header />
+      <Header location={location} />
       <hr />
       <Main>{children}</Main>
       <hr />

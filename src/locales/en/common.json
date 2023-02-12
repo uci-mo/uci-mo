@@ -4,6 +4,9 @@
     "about": "About",
     "blog": "Blog"
   },
+  "footer": {
+    "builtWith": "built with"
+  },
   "page": {
     "home": {
       "seo": "Home",

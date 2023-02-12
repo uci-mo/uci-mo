@@ -1,13 +1,14 @@
+import React from "react";
 import { graphql, HeadFC, Link, PageProps } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import { useI18next, Trans } from "gatsby-plugin-react-i18next";
-import React from "react";
 import { formatIntlDate } from "../../utils/date";
 
 const BlogIndexPage: React.FC<PageProps<Queries.BlogIndexPageQuery>> = ({
   data,
 }) => {
   const { t, language } = useI18next();
+
   const posts = data.allMdx.edges
     .filter((edge) =>
       edge.node.internal?.contentFilePath?.endsWith(`/index.${language}.mdx`)
@@ -38,7 +39,7 @@ const BlogIndexPage: React.FC<PageProps<Queries.BlogIndexPageQuery>> = ({
                 <p>{date}</p>
                 <p>
                   {tags.map((tag) => (
-                    <b>#{tag} </b>
+                    <b key={tag}>#{tag} </b>
                   ))}
                 </p>
                 <div>{image && <GatsbyImage image={image} alt={title} />}</div>

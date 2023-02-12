@@ -104,6 +104,11 @@ const config: GatsbyConfig = {
           fallbackLng: defaultLanguage,
           supportedLngs: languages,
           defaultNS: "common",
+          lowerCaseLng: true,
+          saveMissing: false,
+          interpolation: {
+            escapeValue: false, // not needed for react as it escapes by default
+          },
         },
         pages: [
           {

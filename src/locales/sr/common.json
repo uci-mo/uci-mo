@@ -4,6 +4,9 @@
     "about": "О нама",
     "blog": "Блог"
   },
+  "footer": {
+    "builtWith": "справљено помоћу"
+  },
   "page": {
     "home": {
       "seo": "Дом",
