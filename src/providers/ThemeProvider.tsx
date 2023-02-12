@@ -1,39 +1,42 @@
-import React from "react";
+import React, { createContext, ReactNode, useEffect, useState } from "react";
 
-type Theme = "dark" | "light";
-export const themeKey = "THEME";
+const themes = ["light", "dark"] as const;
+type Theme = typeof themes[number];
+const defaultTheme = themes[0];
+const themeLSKey = "THEME";
+
+function getStoredTheme() {
+  const storedTheme = localStorage.getItem(themeLSKey);
+  return storedTheme === themes[1] ? themes[1] : defaultTheme;
+}
 
 interface ThemeContextValues {
   theme: Theme | null;
   setTheme: (theme: Theme) => void;
 }
 
-export const ThemeContext = React.createContext<ThemeContextValues>({
+export const ThemeContext = createContext<ThemeContextValues>({
   theme: null,
   setTheme: () => {},
 });
 
-export default function ThemeProvider({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const [theme, setTheme] = React.useState<Theme | null>(null);
+export default function ThemeProvider({ children }: { children: ReactNode }) {
+  const [theme, setTheme] = useState<Theme | null>(getStoredTheme());
 
-  React.useEffect(() => {
-    setTheme(
-      document.documentElement.classList.contains("dark") ? "dark" : "light"
-    );
+  useEffect(() => {
+    const storedTheme = getStoredTheme();
+    setTheme(storedTheme);
+    document.documentElement.classList.add(storedTheme);
   }, []);
 
   const setter = (theme: Theme) => {
     setTheme(theme);
 
-    document.documentElement.classList.remove("light", "dark");
+    document.documentElement.classList.remove(...themes);
     document.documentElement.classList.add(theme);
 
     try {
-      localStorage.setItem(themeKey, theme);
+      localStorage.setItem(themeLSKey, theme);
     } catch (e) {}
   };
 
@@ -48,16 +51,3 @@ export default function ThemeProvider({
     </ThemeContext.Provider>
   );
 }
-
-// local storage use?
-
-// export const ThemeToggle = () => {
-//   const { theme, setTheme } = React.useContext(ThemeContext);
-//   const mode = theme === "light" ? "dark" : "light";
-
-//   return (
-//     <button className={""} onClick={() => setTheme(mode)}>
-//       Set {mode} mode
-//     </button>
-//   );
-// };
