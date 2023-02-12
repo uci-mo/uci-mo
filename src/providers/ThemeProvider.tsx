@@ -1,7 +1,12 @@
 import React, { createContext, ReactNode, useEffect, useState } from "react";
+import { lightTheme, darkTheme } from "../styles/theme.css";
 
-const themes = ["light", "dark"] as const;
+export const themes = ["light", "dark"] as const;
 type Theme = typeof themes[number];
+const themesMap: { [key in Theme]: string } = {
+  light: lightTheme,
+  dark: darkTheme,
+};
 const defaultTheme = themes[0];
 const themeLSKey = "THEME";
 
@@ -26,14 +31,16 @@ export default function ThemeProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const storedTheme = getStoredTheme();
     setTheme(storedTheme);
-    document.documentElement.classList.add(storedTheme);
+    document.documentElement.classList.add(themesMap[storedTheme]);
   }, []);
 
   const setter = (theme: Theme) => {
     setTheme(theme);
 
-    document.documentElement.classList.remove(...themes);
-    document.documentElement.classList.add(theme);
+    document.documentElement.classList.remove(
+      ...themes.map((t) => themesMap[t])
+    );
+    document.documentElement.classList.add(themesMap[theme]);
 
     try {
       localStorage.setItem(themeLSKey, theme);

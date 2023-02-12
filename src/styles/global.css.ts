@@ -1,29 +1,20 @@
 import { globalStyle } from "@vanilla-extract/css";
+import { themeVars } from "./theme.css";
 
-export const rootColors = {
-  light: {
-    bg: `white`,
-    color: `black`,
-  },
-  dark: {
-    bg: `#0B1222`,
-    color: `#CBD5E1`,
-  },
-};
+globalStyle("#___gatsby", {
+  isolation: `isolate`,
+  padding: themeVars.space.small,
+  fontFamily: themeVars.fonts.body,
+  background: themeVars.colors.background,
+  color: themeVars.colors.text.normal,
+  // minHeight: "100vh",
+});
 
 globalStyle(`*`, {
   boxSizing: `border-box`,
   margin: 0,
 });
-
-globalStyle(`.dark`, {
-  background: rootColors.dark.bg,
-  color: rootColors.dark.color,
-});
-
 globalStyle(`html`, {
-  background: rootColors.light.bg,
-  color: rootColors.light.color,
   overflowY: "scroll",
 });
 
@@ -49,8 +40,4 @@ globalStyle(`input, button, textare, select`, {
 
 globalStyle(`p, h1, h2, h3, h4, h5, h6`, {
   overflowWrap: `break-word`,
-});
-
-globalStyle(`___gatsby`, {
-  isolation: `isolate`,
 });
