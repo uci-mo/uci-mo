@@ -1,6 +1,10 @@
 import path from "path";
 import { GatsbyNode } from "gatsby";
-import { languages, defaultLanguage } from "./src/utils/language";
+import {
+  languages,
+  defaultLanguage,
+  getLocalePathPrefix,
+} from "./src/utils/language";
 
 const postTemplate = path.resolve(
   `./src/components/templates/PostTemplate.tsx`
@@ -42,12 +46,11 @@ export const createPages: GatsbyNode["createPages"] = async ({
         languages.find((language) =>
           node.internal.contentFilePath?.endsWith(`/index.${language}.mdx`)
         ) || defaultLanguage;
-      const localePathPrefix = lang === defaultLanguage ? "" : `${lang}/`;
 
       // Create blog post pages.
       createPage({
         // slugify to create a slug? a српски?
-        path: `${localePathPrefix}blog/${node.frontmatter.slug}`,
+        path: `${getLocalePathPrefix(lang)}/blog/${node.frontmatter.slug}`,
         // Provide the path to the MDX content file so webpack can pick it up and transform it into JSX
         component: `${postTemplate}?__contentFilePath=${node.internal.contentFilePath}`,
         // You can use the values in this context in our page layout component

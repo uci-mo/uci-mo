@@ -4,7 +4,12 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import { useI18next } from "gatsby-plugin-react-i18next";
 
 import { formatIntlDate } from "../../utils/date";
-import { defaultLanguage, LangType } from "../../utils/language";
+import {
+  defaultLanguage,
+  getSEOt,
+  LangType,
+  LocaleTDataObj,
+} from "../../utils/language";
 import { SEO } from "../../components/SEO";
 
 const BlogIndexPage: React.FC<PageProps<Queries.BlogIndexPageQuery>> = ({
@@ -61,16 +66,13 @@ export default BlogIndexPage;
 export const Head: HeadFC<HeadProps<Queries.BlogIndexPageQuery>> = (
   headProps
 ) => {
-  // console.log("headprops", headProps);
-  const { location, pageContext } = headProps;
-  const {
-    t,
-    //  language
-  } = useI18next();
+  const { location, pageContext, data } = headProps;
+  const t = getSEOt(data as unknown as LocaleTDataObj);
 
   return (
     <SEO
-      title={t("page.404.title") || ""}
+      title={t.page.blog.title}
+      description={t.page.blog.p}
       lang={
         ((pageContext as { language: LangType }).language ||
           defaultLanguage) as LangType

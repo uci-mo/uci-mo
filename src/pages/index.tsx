@@ -3,7 +3,12 @@ import { graphql, HeadFC, HeadProps, PageProps } from "gatsby";
 import { useI18next } from "gatsby-plugin-react-i18next";
 
 import { SEO } from "../components/SEO";
-import { defaultLanguage, LangType } from "../utils/language";
+import {
+  defaultLanguage,
+  getSEOt,
+  LangType,
+  LocaleTDataObj,
+} from "../utils/language";
 
 const docLinks = [
   {
@@ -105,16 +110,15 @@ const IndexPage: React.FC<PageProps> = (indexProps) => {
 
 export default IndexPage;
 
-export const Head: HeadFC<HeadProps> = (headProps) => {
-  // console.log("headprops", headProps);
-  const { location, pageContext } = headProps;
-  const {
-    t,
-    //  language
-  } = useI18next();
+export const Head: HeadFC<HeadProps<Queries.LocalesQuery>> = (headProps) => {
+  console.log("headprops", headProps);
+  const { location, pageContext, data } = headProps;
+  const t = getSEOt(data as unknown as LocaleTDataObj);
 
   return (
     <SEO
+      title={t.seo.title}
+      description={t.seo.description}
       lang={
         ((pageContext as { language: LangType }).language ||
           defaultLanguage) as LangType
@@ -128,7 +132,7 @@ export const Head: HeadFC<HeadProps> = (headProps) => {
 // filter: { ns: { in: ["common"] }, language: { eq: $language } }
 // but this is useless here, since during page transition you can see text being replaced
 export const query = graphql`
-  query ($language: String!) {
+  query Locales($language: String!) {
     locales: allLocale(filter: { language: { eq: $language } }) {
       edges {
         node {

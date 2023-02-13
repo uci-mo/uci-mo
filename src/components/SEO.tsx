@@ -1,5 +1,4 @@
 import React, { ReactNode } from "react";
-import { useI18next } from "gatsby-plugin-react-i18next";
 import { useSiteMetadata } from "../utils/useSiteMetadata";
 import { LangType } from "../utils/language";
 
@@ -21,7 +20,6 @@ export const SEO = ({
   pathname,
   children,
 }: SEOProps) => {
-  const { t, language } = useI18next();
   const {
     title: defaultTitle,
     description: defaultDescription,
@@ -31,8 +29,8 @@ export const SEO = ({
   } = useSiteMetadata();
 
   const seo: { [key: string]: string } = {
-    title: title || t(defaultTitle),
-    description: description || t(defaultDescription),
+    title: title || defaultTitle,
+    description: description || defaultDescription,
     image: `${siteUrl}${siteImage}`,
     url: `${siteUrl}${pathname || ``}`,
     twitterUsername,
