@@ -58,7 +58,9 @@ const BlogIndexPage: React.FC<PageProps<Queries.BlogIndexPageQuery>> = ({
 
 export default BlogIndexPage;
 
-export const Head: HeadFC = (headProps: HeadProps) => {
+export const Head: HeadFC<HeadProps<Queries.BlogIndexPageQuery>> = (
+  headProps
+) => {
   // console.log("headprops", headProps);
   const { location, pageContext } = headProps;
   const {

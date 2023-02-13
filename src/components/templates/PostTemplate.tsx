@@ -46,8 +46,8 @@ export default function PostTemplate({
   );
 }
 
-export const Head: HeadFC = (props: HeadProps) => {
-  const { location, pageContext } = props;
+export const Head: HeadFC<HeadProps<Queries.PostTemplateQuery>> = (props) => {
+  const { location, pageContext, data } = props;
   const pCtx = pageContext as {
     language: LangType;
     frontmatter: { title: string; description: string };

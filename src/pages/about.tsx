@@ -9,7 +9,7 @@ export default function About() {
   return <>About</>;
 }
 
-export const Head: HeadFC = (headProps: HeadProps) => {
+export const Head: HeadFC<HeadProps> = (headProps) => {
   // console.log("headprops", headProps);
   const { location, pageContext } = headProps;
   const {

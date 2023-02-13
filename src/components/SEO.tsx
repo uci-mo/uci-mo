@@ -11,6 +11,9 @@ interface SEOProps {
   children?: ReactNode;
 }
 
+// investigate:
+// https://www.gatsbyjs.com/docs/how-to/adding-common-features/adding-seo-component/#rich-snippets
+
 export const SEO = ({
   lang,
   title,
