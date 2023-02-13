@@ -1,6 +1,9 @@
 import React from "react";
-import { graphql, HeadFC, PageProps } from "gatsby";
+import { graphql, HeadFC, HeadProps, PageProps } from "gatsby";
 import { useI18next } from "gatsby-plugin-react-i18next";
+
+import { SEO } from "../components/SEO";
+import { defaultLanguage, LangType } from "../utils/language";
 
 const docLinks = [
   {
@@ -60,7 +63,8 @@ const links = [
   },
 ];
 
-const IndexPage: React.FC<PageProps> = () => {
+const IndexPage: React.FC<PageProps> = (indexProps) => {
+  // console.log("indexProps", indexProps);
   const { t } = useI18next();
   return (
     <>
@@ -101,7 +105,24 @@ const IndexPage: React.FC<PageProps> = () => {
 
 export default IndexPage;
 
-export const Head: HeadFC = () => <title>Home Page</title>;
+export const Head: HeadFC = (headProps: HeadProps) => {
+  // console.log("headprops", headProps);
+  const { location, pageContext } = headProps;
+  const {
+    t,
+    //  language
+  } = useI18next();
+
+  return (
+    <SEO
+      lang={
+        ((pageContext as { language: LangType }).language ||
+          defaultLanguage) as LangType
+      }
+      pathname={location.pathname}
+    />
+  );
+};
 
 // query specific common.json file with translations:
 // filter: { ns: { in: ["common"] }, language: { eq: $language } }

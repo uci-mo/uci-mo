@@ -1,9 +1,12 @@
 import React, { PropsWithChildren } from "react";
-import { graphql } from "gatsby";
+import { graphql, HeadFC, HeadProps } from "gatsby";
 import { MDXProvider } from "@mdx-js/react";
 import { Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
+
 import { formatIntlDate } from "../../utils/date";
+import { defaultLanguage, LangType } from "../../utils/language";
+import { SEO } from "../SEO";
 
 const shortcodes = { Link }; // Provide common components here
 
@@ -42,6 +45,23 @@ export default function PostTemplate({
     </>
   );
 }
+
+export const Head: HeadFC = (props: HeadProps) => {
+  const { location, pageContext } = props;
+  const pCtx = pageContext as {
+    language: LangType;
+    frontmatter: { title: string; description: string };
+  };
+
+  return (
+    <SEO
+      title={pCtx.frontmatter.title}
+      description={pCtx.frontmatter.description}
+      lang={(pCtx.language || defaultLanguage) as LangType}
+      pathname={location.pathname}
+    />
+  );
+};
 
 export const query = graphql`
   query PostTemplate($id: String!, $language: String!) {

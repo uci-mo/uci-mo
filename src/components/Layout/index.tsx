@@ -10,7 +10,7 @@ import Main from "./Main";
 
 export default function Layout(props: PropsWithChildren<PageProps>) {
   const { children, location } = props;
-  console.log("LayoutProps", props);
+  // console.log("LayoutProps", props);
 
   return (
     <>

@@ -1,4 +1,8 @@
 {
+  "seo": {
+    "title": "learn Mo",
+    "description": "This blog is documenting Mo's attempts at learning something new"
+  },
   "nav": {
     "home": "Home",
     "about": "About",

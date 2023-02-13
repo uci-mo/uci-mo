@@ -5,13 +5,11 @@ const siteUrl = "https://uci-mo.netlify.app/";
 
 const config: GatsbyConfig = {
   siteMetadata: {
+    title: "seo.title",
+    description: "seo.description",
+    twitterUsername: `@uci-mo`,
+    siteImage: `/banner.jpg`,
     siteUrl,
-    siteTitle: `uci-mo`,
-    siteTitleAlt: `uci-mo - Gatsby Theme`,
-    siteHeadline: `uci-mo - Gatsby Theme from @mo`,
-    siteDescription: `Typography driven, feature-rich blogging theme with minimal aesthetics. Includes tags/categories support and extensive features for code blocks such as live preview, line numbers, and line highlighting.`,
-    // siteImage: `/banner.jpg`,
-    author: `@mo`,
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin

@@ -1,8 +1,11 @@
 import React from "react";
-import { graphql, HeadFC, Link, PageProps } from "gatsby";
+import { graphql, HeadFC, HeadProps, Link, PageProps } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { useI18next, Trans } from "gatsby-plugin-react-i18next";
+import { useI18next } from "gatsby-plugin-react-i18next";
+
 import { formatIntlDate } from "../../utils/date";
+import { defaultLanguage, LangType } from "../../utils/language";
+import { SEO } from "../../components/SEO";
 
 const BlogIndexPage: React.FC<PageProps<Queries.BlogIndexPageQuery>> = ({
   data,
@@ -55,11 +58,25 @@ const BlogIndexPage: React.FC<PageProps<Queries.BlogIndexPageQuery>> = ({
 
 export default BlogIndexPage;
 
-export const Head: HeadFC = () => (
-  <title>
-    <Trans>head</Trans>
-  </title>
-);
+export const Head: HeadFC = (headProps: HeadProps) => {
+  // console.log("headprops", headProps);
+  const { location, pageContext } = headProps;
+  const {
+    t,
+    //  language
+  } = useI18next();
+
+  return (
+    <SEO
+      title={t("page.404.title") || ""}
+      lang={
+        ((pageContext as { language: LangType }).language ||
+          defaultLanguage) as LangType
+      }
+      pathname={location.pathname}
+    />
+  );
+};
 
 export const query = graphql`
   query BlogIndexPage($language: String!) {
