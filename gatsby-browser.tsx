@@ -2,6 +2,12 @@ import React, { cloneElement, createElement, isValidElement } from "react";
 import ThemeProvider from "./src/providers/ThemeProvider";
 import Layout from "./src/components/Layout";
 import "./src/styles/global.css";
+import { overlayContainerId } from "./src/utils/useOverlayPortal";
+import {
+  GatsbyBrowser,
+  WrapPageElementBrowserArgs,
+  WrapRootElementBrowserArgs,
+} from "gatsby";
 
 // Called when the initial (but not subsequent) render of Gatsby App is done on the client.
 // exports.onInitialClientRender = () => {
@@ -24,12 +30,22 @@ import "./src/styles/global.css";
 //   console.log("We can show loading indicator now")
 // }
 
-export const wrapRootElement = ({ element }) => {
+export const wrapRootElement: GatsbyBrowser["wrapRootElement"] = ({
+  element,
+}: WrapRootElementBrowserArgs) => {
   console.log("elementRoot", element);
-  return <ThemeProvider>{element}</ThemeProvider>;
+  return (
+    <ThemeProvider>
+      {element}
+      <div id={overlayContainerId} />
+    </ThemeProvider>
+  );
 };
 
-export const wrapPageElement = ({ element, props }) => {
+export const wrapPageElement: GatsbyBrowser["wrapPageElement"] = ({
+  element,
+  props,
+}: WrapPageElementBrowserArgs) => {
   return cloneElement(
     element, // I18nextProvider
     element.props,
