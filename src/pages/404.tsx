@@ -1,6 +1,6 @@
 import * as React from "react";
-import { Link, HeadFC, PageProps, graphql, HeadProps } from "gatsby";
-import { useI18next } from "gatsby-plugin-react-i18next";
+import { HeadFC, PageProps, graphql, HeadProps } from "gatsby";
+import { useI18next, Link as Linki18n } from "gatsby-plugin-react-i18next";
 
 import { SEO } from "../components/SEO";
 import {
@@ -18,7 +18,7 @@ const NotFoundPage: React.FC<PageProps> = () => {
       <p>
         {t("page.404.p")}
         <br />
-        <Link to="/">{t("page.404.goHomeLink")}</Link>.
+        <Linki18n to="/">{t("page.404.goHomeLink")}</Linki18n>.
       </p>
     </>
   );
