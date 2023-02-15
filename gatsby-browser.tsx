@@ -1,5 +1,5 @@
 import React, { cloneElement, createElement, isValidElement } from "react";
-import ThemeProvider from "./src/providers/ThemeProvider";
+import ColorModeProvider from "./src/providers/ColorModeProvider";
 import Layout from "./src/components/Layout";
 import "./src/styles/global.css";
 import { overlayContainerId } from "./src/utils/useOverlayPortal";
@@ -35,10 +35,10 @@ export const wrapRootElement: GatsbyBrowser["wrapRootElement"] = ({
 }: WrapRootElementBrowserArgs) => {
   console.log("elementRoot", element);
   return (
-    <ThemeProvider>
+    <ColorModeProvider>
       {element}
       <div id={overlayContainerId} />
-    </ThemeProvider>
+    </ColorModeProvider>
   );
 };
 

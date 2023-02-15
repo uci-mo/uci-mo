@@ -38,7 +38,7 @@ export default function Main({ children }: PropsWithChildren) {
     },
     leave: {
       opacity: 0,
-      transform: "translate(-50%, 0) scale(0.75)",
+      transform: "translate(-50%, 0) scale(0.5)",
     },
     config: {
       duration: pageTransitionDuration,

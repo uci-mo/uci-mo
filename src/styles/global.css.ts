@@ -1,5 +1,5 @@
 import { globalStyle } from "@vanilla-extract/css";
-import { themeVars } from "./theme.css";
+import { ve } from "./theme.css";
 
 globalStyle(`"*, *::before, *::after"`, {
   boxSizing: `border-box`,
@@ -20,19 +20,20 @@ globalStyle(`html, body`, {
 
 globalStyle("#___gatsby", {
   isolation: `isolate`,
-  // padding: themeVars.space.small,
-  fontFamily: themeVars.fonts.body,
-  background: themeVars.colors.background,
-  color: themeVars.colors.text.normal,
+  // padding: ve.space.small,
+  fontFamily: ve.fonts.body,
+  background: ve.theme.background,
+  color: ve.theme.text.normal,
+  transition: "background-color 200ms, color 100ms",
   display: "flex",
   flexDirection: "column",
   minHeight: "100%",
 });
 
 globalStyle("#___gatsby #gatsby-focus-wrapper", {
-  flexGrow: 1,
   display: "flex",
   flexDirection: "column",
+  flexGrow: 1,
 });
 
 globalStyle(`img, picture, video, canvas, svg`, {
@@ -46,4 +47,14 @@ globalStyle(`input, button, textare, select`, {
 
 globalStyle(`p, h1, h2, h3, h4, h5, h6`, {
   overflowWrap: `break-word`,
+});
+
+globalStyle("a", {
+  color: ve.theme.text.link,
+  textDecoration: "none",
+  transition: "color 100ms",
+});
+globalStyle("a:hover", {
+  color: ve.theme.text.linkHover,
+  textDecoration: "underline",
 });

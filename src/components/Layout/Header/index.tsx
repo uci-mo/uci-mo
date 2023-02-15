@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import ThemeBtn from "./ThemeBtn";
+import ColorModeToggleBtn from "./ColorModeToggleBtn";
 import { Link, navigate } from "gatsby";
 import { Link as LinkI18, useI18next } from "gatsby-plugin-react-i18next";
 import { pageTransitionDuration } from "../Main";
@@ -64,7 +64,6 @@ export default function Header({ location }: HeaderProps) {
                 to={route.to}
                 activeClassName=""
                 activeStyle={{
-                  textDecoration: "underline",
                   borderLeft: "10px solid red",
                 }}
               >
@@ -80,7 +79,7 @@ export default function Header({ location }: HeaderProps) {
           ))}
         </ul>
 
-        <ThemeBtn />
+        <ColorModeToggleBtn />
 
         <ul className="languages">
           {languages.map((lng) => (
@@ -91,7 +90,6 @@ export default function Header({ location }: HeaderProps) {
                 style={
                   i18n.resolvedLanguage === lng
                     ? {
-                        textDecoration: "underline",
                         borderLeft: "10px solid red",
                         pointerEvents: "none",
                       }
