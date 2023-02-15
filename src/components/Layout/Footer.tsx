@@ -4,7 +4,7 @@ import { useI18next } from "gatsby-plugin-react-i18next";
 export default function Footer() {
   const { t } = useI18next();
   return (
-    <footer>
+    <footer style={{ borderTop: "1px solid black" }}>
       <p>
         <Suspense fallback={null}>{new Date().getFullYear()}</Suspense> © ,{" "}
         {t("footer.builtWith")}

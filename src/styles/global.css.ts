@@ -5,29 +5,34 @@ globalStyle(`"*, *::before, *::after"`, {
   boxSizing: `border-box`,
 });
 
-globalStyle(`html, body`, {
-  height: `100%`,
-  fontSize: `100%`,
-  fontFamily: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
-  margin: 0,
-});
-
 globalStyle(`html`, {
   overflowY: "scroll",
 });
 
+globalStyle(`html, body`, {
+  margin: 0,
+  height: "100%",
+  fontSize: `100%`,
+  fontFamily: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
+  lineHeight: 1.5,
+  WebkitFontSmoothing: `antialiased`,
+});
+
 globalStyle("#___gatsby", {
   isolation: `isolate`,
-  padding: themeVars.space.small,
+  // padding: themeVars.space.small,
   fontFamily: themeVars.fonts.body,
   background: themeVars.colors.background,
   color: themeVars.colors.text.normal,
+  display: "flex",
+  flexDirection: "column",
   minHeight: "100%",
 });
 
-globalStyle(`body`, {
-  lineHeight: 1.5,
-  WebkitFontSmoothing: `antialiased`,
+globalStyle("#___gatsby #gatsby-focus-wrapper", {
+  flexGrow: 1,
+  display: "flex",
+  flexDirection: "column",
 });
 
 globalStyle(`img, picture, video, canvas, svg`, {

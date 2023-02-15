@@ -28,7 +28,7 @@ export function getInitialLang(): LangType {
 export interface LocaleTDataObj {
   locales: { edges: { node: { data: string } }[] };
 }
-export function getSEOt(data: LocaleTDataObj) {
+export function getSEOtObj(data: LocaleTDataObj) {
   const localeString = data.locales?.edges[0].node.data;
   let t;
   if (localeString) {

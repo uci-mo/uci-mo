@@ -6,8 +6,8 @@ import { pageTransitionDuration } from "../Main";
 
 const routes: { to: string; t: string }[] = [
   { to: "/", t: "nav.home" },
-  { to: "/about", t: "nav.about" },
-  { to: "/blog", t: "nav.blog" },
+  { to: "/about/", t: "nav.about" },
+  { to: "/blog/", t: "nav.blog" },
 ];
 
 interface HeaderProps {
@@ -41,8 +41,8 @@ export default function Header({ location }: HeaderProps) {
   // getLangRoutePrefix(i18.language)
 
   return (
-    <header>
-      <nav style={{ display: "flex" }}>
+    <header style={{ borderBottom: "1px solid black" }}>
+      <nav style={{ display: "flex", justifyContent: "space-between" }}>
         <ul>
           {/* {routes.map((route) => (
             <li key={route.to}>
@@ -68,24 +68,19 @@ export default function Header({ location }: HeaderProps) {
                   borderLeft: "10px solid red",
                 }}
               >
-                {t(route.t)}
+                <span
+                  onClick={(e) => {
+                    if (originalPath === route.to) e.preventDefault();
+                  }}
+                >
+                  {t(route.t)}
+                </span>
               </LinkI18>
             </li>
           ))}
         </ul>
 
-        {/* <ul>
-          {languages.map((lang) => (
-            <li key={lang}>
-              <button
-                disabled={i18n.language === lang}
-                onClick={() => changeLang(lang)}
-              >
-                {lang}
-              </button>
-            </li>
-          ))}
-        </ul> */}
+        <ThemeBtn />
 
         <ul className="languages">
           {languages.map((lng) => (
@@ -108,7 +103,6 @@ export default function Header({ location }: HeaderProps) {
             </li>
           ))}
         </ul>
-        <ThemeBtn />
       </nav>
     </header>
   );

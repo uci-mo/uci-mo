@@ -15,9 +15,7 @@ export default function Layout(props: PropsWithChildren<PageProps>) {
   return (
     <>
       <Header location={location} />
-      <hr />
       <Main>{children}</Main>
-      <hr />
       <Footer />
     </>
   );

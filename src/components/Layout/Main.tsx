@@ -1,3 +1,4 @@
+import { PageProps } from "gatsby";
 import React, {
   PropsWithChildren,
   useCallback,
@@ -5,16 +6,17 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { useTransition, animated } from "react-spring";
+import { useTransition, animated, easings, useScroll } from "react-spring";
 
-export const pageTransitionDuration = 400;
+export const pageTransitionDuration = 700;
 
 export default function Main({ children }: PropsWithChildren) {
-  const mainRef = useRef<HTMLMediaElement>(null);
+  const mainRef = useRef<HTMLDivElement>(null);
   const [mainHeight, setMainHeight] = useState<number | "auto">("auto");
 
   const updateMainHeight = useCallback(() => {
-    setMainHeight(mainRef.current?.offsetHeight || "auto");
+    const mainHeight = mainRef.current?.offsetHeight;
+    setMainHeight(mainHeight || "auto");
   }, []);
 
   useEffect(() => {
@@ -22,42 +24,56 @@ export default function Main({ children }: PropsWithChildren) {
     return () => window.removeEventListener("resize", updateMainHeight);
   }, []);
 
-  const transitions = useTransition(children, {
-    keys: null,
-    from: { opacity: 0, transform: "translateX(150%) scale(5)" },
-    enter: { opacity: 1, transform: "translateX(0) scale(1)" },
-    leave: { opacity: 0, transform: "translateX(-150%) scale(1)" },
+  const transitions = useTransition([children], {
+    from: (item, i) => {
+      // console.log("from", item, i);
+      return {
+        opacity: 0,
+        transform: "translate(50%, 0) scale(1.5)",
+      };
+    },
+    enter: {
+      opacity: 1,
+      transform: "translate(0%, 0) scale(1)",
+    },
+    leave: {
+      opacity: 0,
+      transform: "translate(-50%, 0) scale(0.75)",
+    },
     config: {
       duration: pageTransitionDuration,
     },
     onStart: updateMainHeight,
     onDestroyed: updateMainHeight,
+    easing: easings.easeInOutBounce,
   });
 
   return (
-    <div
-      style={{
-        overflowY: "hidden",
-        height: mainHeight,
-        transition: "height 200ms",
-      }}
-    >
-      {/* scrolling transition to prevous position when clicking Back */}
-      {/* https://janessagarrow.com/blog/gatsby-framer-motion-page-transitions/#bonus */}
-      <main
-        ref={mainRef}
+    <div style={{ flexGrow: 1 }}>
+      <div
         style={{
-          overflow: "hidden",
-          display: "grid",
-          gridTemplate: '"main"',
+          overflowY: "hidden",
+          height: mainHeight,
+          transition: `height ${pageTransitionDuration}ms`,
         }}
       >
-        {transitions((style, passedChildren) => (
-          <animated.div style={{ ...style, gridArea: "main" }}>
-            {passedChildren}
-          </animated.div>
-        ))}
-      </main>
+        {/* scrolling transition to prevous position when clicking Back */}
+        {/* https://janessagarrow.com/blog/gatsby-framer-motion-page-transitions/#bonus */}
+        <main
+          ref={mainRef}
+          style={{
+            overflow: "hidden",
+            display: "grid",
+            gridTemplate: '"main"',
+          }}
+        >
+          {transitions((style, passedChildren) => (
+            <animated.div style={{ ...style, gridArea: "main" }}>
+              {passedChildren}
+            </animated.div>
+          ))}
+        </main>
+      </div>
     </div>
   );
 }

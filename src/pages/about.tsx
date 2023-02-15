@@ -4,11 +4,14 @@ import { useI18next } from "gatsby-plugin-react-i18next";
 
 import {
   defaultLanguage,
-  getSEOt,
+  getSEOtObj,
   LangType,
   LocaleTDataObj,
 } from "../utils/language";
 import { SEO } from "../components/SEO";
+
+// ko sto kaze:
+// https://www.buymeacoffee.com/
 
 export default function About() {
   return <>About</>;
@@ -16,7 +19,7 @@ export default function About() {
 
 export const Head: HeadFC<HeadProps<unknown>> = (headProps) => {
   const { location, pageContext, data } = headProps;
-  const t = getSEOt(data as unknown as LocaleTDataObj);
+  const t = getSEOtObj(data as unknown as LocaleTDataObj);
 
   return (
     <SEO

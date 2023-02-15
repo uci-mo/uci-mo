@@ -5,7 +5,7 @@ import { useI18next } from "gatsby-plugin-react-i18next";
 import { SEO } from "../components/SEO";
 import {
   defaultLanguage,
-  getSEOt,
+  getSEOtObj,
   LangType,
   LocaleTDataObj,
 } from "../utils/language";
@@ -99,7 +99,7 @@ export default IndexPage;
 export const Head: HeadFC<HeadProps<Queries.LocalesQuery>> = (headProps) => {
   // console.log("headprops", headProps);
   const { location, pageContext, data } = headProps;
-  const t = getSEOt(data as unknown as LocaleTDataObj);
+  const t = getSEOtObj(data as unknown as LocaleTDataObj);
 
   return (
     <SEO
