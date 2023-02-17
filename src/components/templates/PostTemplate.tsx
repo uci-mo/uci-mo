@@ -7,6 +7,7 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import { formatIntlDate } from "../../utils/date";
 import { defaultLanguage, LangType } from "../../utils/language";
 import { SEO } from "../SEO";
+import Container from "../Container";
 
 const shortcodes = { Link }; // Provide common components here
 
@@ -27,7 +28,7 @@ export default function PostTemplate({
   // console.log("post children", children);
 
   return (
-    <>
+    <Container>
       <h1>{title}</h1>
       <p>{date}</p>
       <p>
@@ -42,7 +43,7 @@ export default function PostTemplate({
         />
       )}
       <MDXProvider components={shortcodes}>{children}</MDXProvider>
-    </>
+    </Container>
   );
 }
 

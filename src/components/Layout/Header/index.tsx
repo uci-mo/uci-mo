@@ -3,6 +3,7 @@ import ColorModeToggleBtn from "./ColorModeToggleBtn";
 import { Link, navigate } from "gatsby";
 import { Link as LinkI18, useI18next } from "gatsby-plugin-react-i18next";
 import { pageTransitionDuration } from "../Main";
+import Container from "../../Container";
 
 const routes: { to: string; t: string }[] = [
   { to: "/", t: "nav.home" },
@@ -42,9 +43,10 @@ export default function Header({ location }: HeaderProps) {
 
   return (
     <header style={{ borderBottom: "1px solid black" }}>
-      <nav style={{ display: "flex", justifyContent: "space-between" }}>
-        <ul>
-          {/* {routes.map((route) => (
+      <Container>
+        <nav style={{ display: "flex", justifyContent: "space-between" }}>
+          <ul>
+            {/* {routes.map((route) => (
             <li key={route.to}>
               <Link
                 to={route.to}
@@ -58,50 +60,51 @@ export default function Header({ location }: HeaderProps) {
               </Link>
             </li>
           ))} */}
-          {routes.map((route) => (
-            <li key={route.to}>
-              <LinkI18
-                to={route.to}
-                activeClassName=""
-                activeStyle={{
-                  borderLeft: "10px solid red",
-                }}
-              >
-                <span
-                  onClick={(e) => {
-                    if (originalPath === route.to) e.preventDefault();
+            {routes.map((route) => (
+              <li key={route.to}>
+                <LinkI18
+                  to={route.to}
+                  activeClassName=""
+                  activeStyle={{
+                    borderLeft: "10px solid red",
                   }}
                 >
-                  {t(route.t)}
-                </span>
-              </LinkI18>
-            </li>
-          ))}
-        </ul>
+                  <span
+                    onClick={(e) => {
+                      if (originalPath === route.to) e.preventDefault();
+                    }}
+                  >
+                    {t(route.t)}
+                  </span>
+                </LinkI18>
+              </li>
+            ))}
+          </ul>
 
-        <ColorModeToggleBtn />
+          <ColorModeToggleBtn />
 
-        <ul className="languages">
-          {languages.map((lng) => (
-            <li key={lng}>
-              <LinkI18
-                to={originalPath}
-                language={lng}
-                style={
-                  i18n.resolvedLanguage === lng
-                    ? {
-                        borderLeft: "10px solid red",
-                        pointerEvents: "none",
-                      }
-                    : {}
-                }
-              >
-                {lng}
-              </LinkI18>
-            </li>
-          ))}
-        </ul>
-      </nav>
+          <ul className="languages">
+            {languages.map((lng) => (
+              <li key={lng}>
+                <LinkI18
+                  to={originalPath}
+                  language={lng}
+                  style={
+                    i18n.resolvedLanguage === lng
+                      ? {
+                          borderLeft: "10px solid red",
+                          pointerEvents: "none",
+                        }
+                      : {}
+                  }
+                >
+                  {lng}
+                </LinkI18>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </Container>
     </header>
   );
 }

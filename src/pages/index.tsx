@@ -9,6 +9,7 @@ import {
   LangType,
   LocaleTDataObj,
 } from "../utils/language";
+import Container from "../components/Container";
 
 const docLinks = [
   {
@@ -60,7 +61,7 @@ const IndexPage: React.FC<PageProps> = (indexProps) => {
   // console.log("indexProps", indexProps);
   const { t } = useI18next();
   return (
-    <>
+    <Container>
       <h1>
         <span>-- {t("page.home.title")} 🎉🎉🎉</span>
       </h1>
@@ -90,7 +91,7 @@ const IndexPage: React.FC<PageProps> = (indexProps) => {
           </li>
         ))}
       </ul>
-    </>
+    </Container>
   );
 };
 

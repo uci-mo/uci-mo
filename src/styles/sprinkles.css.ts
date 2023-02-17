@@ -1,46 +1,64 @@
-import { createSprinkles, defineProperties } from "@vanilla-extract/sprinkles";
+import {
+  createSprinkles,
+  defineProperties,
+  createMapValueFn,
+} from "@vanilla-extract/sprinkles";
 import { ve } from "./theme.css";
 
-// const breakpoints = {
-//   mobile: 0,
-//   tablet: 768,
-//   desktop: 1200,
-// } as const;
+const breakpointKeys = ["xs", "sm", "md", "lg", "xl", "xxl"] as const;
+type BreakpointKey = typeof breakpointKeys[number];
+export const breakpoints: Record<
+  BreakpointKey,
+  { screen: number; el: number | string }
+> = {
+  xs: { screen: 0, el: 0 },
+  // min screen width, max element width
+  sm: { screen: 576, el: 540 },
+  md: { screen: 768, el: 720 },
+  lg: { screen: 992, el: 960 },
+  xl: { screen: 1200, el: 1140 },
+  xxl: { screen: 1400, el: 1320 },
+} as const;
 
-// const breakpointsEntries = Object.entries(breakpoints);
-// const breakPointsKeys = breakpointsEntries.map(ab)
-
-// const conditions = Object.entries(breakpoints).reduce((acc, breakpoint, bi) => {
-//   const [key, value] = breakpoint;
-//   return {
-//     ...acc,
-//     [key]:
-//       bi === 0
-//         ? {}
-//         : {
-//             "@media": `screen and (min-width: ${value}px)`,
-//           },
-//   };
-// }, {});
+export const conditions = breakpointKeys.reduce(
+  (acc, breakpointKey, bi) => ({
+    ...acc,
+    [breakpointKey]:
+      bi === 0
+        ? {}
+        : {
+            "@media": `screen and (min-width: ${breakpoints[breakpointKey].screen}px)`,
+          },
+  }),
+  {}
+) as Record<BreakpointKey, Record<"@media", string>>;
 
 const responsiveProperties = defineProperties({
-  conditions: {
-    mobile: {},
-    tablet: {
-      "@media": "screen and (min-width: 768px)",
-    },
-    desktop: {
-      "@media": "screen and (min-width: 1200px)",
-    },
-  },
-  defaultCondition: "mobile",
-  responsiveArray: ["mobile", "tablet", "desktop"],
+  conditions,
+  defaultCondition: breakpointKeys[0],
+  responsiveArray: breakpointKeys,
   properties: {
-    fontSize: ve.fontSizes,
-    lineHeight: ve.lineHeights,
+    fontSize: ve.fontSize,
+    lineHeight: ve.lineHeight,
+    paddingTop: ve.space,
+    paddingBottom: ve.space,
+    paddingLeft: ve.space,
+    paddingRight: ve.space,
+    marginTop: ve.space,
+    marginBottom: ve.space,
+    marginLeft: ve.space,
+    marginRight: ve.space,
   },
   shorthands: {
     text: ["fontSize", "lineHeight"],
+    p: ["paddingTop", "paddingBottom", "paddingLeft", "paddingRight"],
+    px: ["paddingLeft", "paddingRight"],
+    py: ["paddingTop", "paddingBottom"],
+    m: ["marginTop", "marginBottom", "marginLeft", "marginRight"],
+    mx: ["marginLeft", "marginRight"],
+    my: ["marginTop", "marginBottom"],
   },
 });
 export const sprinkles = createSprinkles(responsiveProperties);
+
+export const mapResponsiveValue = createMapValueFn(responsiveProperties);

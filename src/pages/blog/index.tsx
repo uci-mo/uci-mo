@@ -11,6 +11,7 @@ import {
   LocaleTDataObj,
 } from "../../utils/language";
 import { SEO } from "../../components/SEO";
+import Container from "../../components/Container";
 
 const BlogIndexPage: React.FC<PageProps<Queries.BlogIndexPageQuery>> = ({
   data,
@@ -24,7 +25,7 @@ const BlogIndexPage: React.FC<PageProps<Queries.BlogIndexPageQuery>> = ({
     .map((edge) => edge.node);
 
   return (
-    <>
+    <Container>
       <h1>{t("page.blog.title")}</h1>
       <p>{t("page.blog.p")}</p>
       <div style={{ display: "grid" }}>
@@ -57,7 +58,7 @@ const BlogIndexPage: React.FC<PageProps<Queries.BlogIndexPageQuery>> = ({
         })}
       </div>
       <Link to="/">{t("page.blog.goHomeLink")}</Link>.
-    </>
+    </Container>
   );
 };
 

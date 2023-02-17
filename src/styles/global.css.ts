@@ -1,25 +1,26 @@
 import { globalStyle } from "@vanilla-extract/css";
 import { ve } from "./theme.css";
 
-globalStyle(`"*, *::before, *::after"`, {
-  boxSizing: `border-box`,
+globalStyle("*, *::before, *::after", {
+  boxSizing: "border-box",
 });
 
-globalStyle(`html`, {
+globalStyle("html", {
   overflowY: "scroll",
 });
 
-globalStyle(`html, body`, {
+globalStyle("html, body", {
   margin: 0,
   height: "100%",
-  fontSize: `100%`,
-  fontFamily: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
+  fontSize: "100%",
+  fontFamily:
+    '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
   lineHeight: 1.5,
-  WebkitFontSmoothing: `antialiased`,
+  WebkitFontSmoothing: "antialiased",
 });
 
 globalStyle("#___gatsby", {
-  isolation: `isolate`,
+  isolation: "isolate",
   // padding: ve.space.small,
   fontFamily: ve.fonts.body,
   background: ve.theme.background,
@@ -36,17 +37,17 @@ globalStyle("#___gatsby #gatsby-focus-wrapper", {
   flexGrow: 1,
 });
 
-globalStyle(`img, picture, video, canvas, svg`, {
-  display: `block`,
-  maxWidth: `100%`,
+globalStyle("img, picture, video, canvas, svg", {
+  display: "block",
+  maxWidth: "100%",
 });
 
-globalStyle(`input, button, textare, select`, {
-  font: `inherit`,
+globalStyle("input, button, textare, select", {
+  font: "inherit",
 });
 
-globalStyle(`p, h1, h2, h3, h4, h5, h6`, {
-  overflowWrap: `break-word`,
+globalStyle("p, h1, h2, h3, h4, h5, h6", {
+  overflowWrap: "break-word",
 });
 
 globalStyle("a", {

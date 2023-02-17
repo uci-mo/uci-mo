@@ -9,18 +9,19 @@ import {
   LangType,
   LocaleTDataObj,
 } from "../utils/language";
+import Container from "../components/Container";
 
 const NotFoundPage: React.FC<PageProps> = () => {
   const { t } = useI18next();
   return (
-    <>
+    <Container>
       <h1>{t("page.404.title")}</h1>
       <p>
         {t("page.404.p")}
         <br />
         <Linki18n to="/">{t("page.404.goHomeLink")}</Linki18n>.
       </p>
-    </>
+    </Container>
   );
 };
 

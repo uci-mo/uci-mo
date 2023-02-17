@@ -9,12 +9,13 @@ import {
   LocaleTDataObj,
 } from "../utils/language";
 import { SEO } from "../components/SEO";
+import Container from "../components/Container";
 
 // ko sto kaze:
 // https://www.buymeacoffee.com/
 
 export default function About() {
-  return <>About</>;
+  return <Container>About</Container>;
 }
 
 export const Head: HeadFC<HeadProps<unknown>> = (headProps) => {
