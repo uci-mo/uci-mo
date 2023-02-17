@@ -5,7 +5,7 @@ import { useI18next, Link as Linki18n } from "gatsby-plugin-react-i18next";
 import { SEO } from "../components/SEO";
 import {
   defaultLanguage,
-  getSEOtObj,
+  getSEOtranslateFn,
   LangType,
   LocaleTDataObj,
 } from "../utils/language";
@@ -29,12 +29,12 @@ export default NotFoundPage;
 
 export const Head: HeadFC<HeadProps<unknown>> = (headProps) => {
   const { location, pageContext, data } = headProps;
-  const t = getSEOtObj(data as unknown as LocaleTDataObj);
+  const t = getSEOtranslateFn(data as unknown as LocaleTDataObj);
 
   return (
     <SEO
-      title={t.page[404].title}
-      description={t.page[404].p}
+      title={t("page.404.title")}
+      description={t("page.404.p")}
       lang={
         ((pageContext as { language: LangType }).language ||
           defaultLanguage) as LangType

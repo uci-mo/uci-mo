@@ -28,11 +28,17 @@ export function getInitialLang(): LangType {
 export interface LocaleTDataObj {
   locales: { edges: { node: { data: string } }[] };
 }
-export function getSEOtObj(data: LocaleTDataObj) {
+export function getSEOtranslateFn(data: LocaleTDataObj) {
   const localeString = data.locales?.edges[0].node.data;
-  let t;
-  if (localeString) {
-    t = JSON.parse(localeString);
-  }
-  return t;
+  const localeData = JSON.parse(localeString);
+
+  return (tString: string) => {
+    const tSteps = tString.split(".");
+    let currentStep: any;
+    for (let i = 0; i < tSteps.length; i++) {
+      const tStep = tSteps[i];
+      currentStep = i === 0 ? localeData[tStep] : currentStep[tStep];
+    }
+    return typeof currentStep === "string" ? currentStep : tString;
+  };
 }

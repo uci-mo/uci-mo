@@ -6,7 +6,7 @@ import { useI18next } from "gatsby-plugin-react-i18next";
 import { formatIntlDate } from "../../utils/date";
 import {
   defaultLanguage,
-  getSEOtObj,
+  getSEOtranslateFn,
   LangType,
   LocaleTDataObj,
 } from "../../utils/language";
@@ -68,12 +68,12 @@ export const Head: HeadFC<HeadProps<Queries.BlogIndexPageQuery>> = (
   headProps
 ) => {
   const { location, pageContext, data } = headProps;
-  const t = getSEOtObj(data as unknown as LocaleTDataObj);
+  const t = getSEOtranslateFn(data as unknown as LocaleTDataObj);
 
   return (
     <SEO
-      title={t.page.blog.title}
-      description={t.page.blog.p}
+      title={t("page.blog.title")}
+      description={t("page.blog.p")}
       lang={
         ((pageContext as { language: LangType }).language ||
           defaultLanguage) as LangType

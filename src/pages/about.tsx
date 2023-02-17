@@ -4,7 +4,7 @@ import { useI18next } from "gatsby-plugin-react-i18next";
 
 import {
   defaultLanguage,
-  getSEOtObj,
+  getSEOtranslateFn,
   LangType,
   LocaleTDataObj,
 } from "../utils/language";
@@ -20,12 +20,12 @@ export default function About() {
 
 export const Head: HeadFC<HeadProps<unknown>> = (headProps) => {
   const { location, pageContext, data } = headProps;
-  const t = getSEOtObj(data as unknown as LocaleTDataObj);
+  const t = getSEOtranslateFn(data as unknown as LocaleTDataObj);
 
   return (
     <SEO
-      title={t.seo.title}
-      description={t.seo.description}
+      title={t("seo.title")}
+      description={t("seo.description")}
       lang={
         ((pageContext as { language: LangType }).language ||
           defaultLanguage) as LangType
