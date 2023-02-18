@@ -33,7 +33,7 @@ export const Head: HeadFC<HeadProps<unknown>> = (headProps) => {
 
   return (
     <SEO
-      title={t("page.404.title")}
+      title={`${t("seo.title")} | ${t("page.404.title")}`}
       description={t("page.404.p")}
       lang={
         ((pageContext as { language: LangType }).language ||

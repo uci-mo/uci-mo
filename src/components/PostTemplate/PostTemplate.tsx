@@ -5,7 +5,12 @@ import { Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 
 import { formatIntlDate } from "../../utils/date";
-import { defaultLanguage, LangType } from "../Locale";
+import {
+  defaultLanguage,
+  getSEOtranslateFn,
+  LangType,
+  LocaleTDataObj,
+} from "../Locale";
 import { SEO } from "../SEO";
 import Container from "../Container";
 
@@ -23,9 +28,6 @@ export default function PostTemplate({
   const tags = data.mdx?.frontmatter?.tags || [];
   const image =
     data.mdx?.frontmatter?.featuredImg?.childImageSharp?.gatsbyImageData;
-
-  // console.log("data", data);
-  // console.log("post children", children);
 
   return (
     <Container>
@@ -47,19 +49,26 @@ export default function PostTemplate({
   );
 }
 
-export const Head: HeadFC<HeadProps<Queries.PostTemplateQuery>> = (props) => {
-  const { location, pageContext, data } = props;
+export const Head: HeadFC<Queries.PostTemplateQuery> = ({
+  location,
+  pageContext,
+  data,
+}) => {
   const pCtx = pageContext as {
     language: LangType;
     frontmatter: { title: string; description: string };
   };
+  const t = getSEOtranslateFn(data as unknown as LocaleTDataObj);
+  const thumbImg =
+    data.mdx?.frontmatter?.thumb?.childImageSharp?.gatsbyImageData;
 
   return (
     <SEO
-      title={pCtx.frontmatter.title}
-      description={pCtx.frontmatter.description}
       lang={(pCtx.language || defaultLanguage) as LangType}
+      title={`${t("seo.title")} | ${pCtx.frontmatter.title}`}
+      description={pCtx.frontmatter.description}
       pathname={location.pathname}
+      siteImage={thumbImg?.images.fallback?.src}
     />
   );
 };
@@ -78,6 +87,17 @@ export const query = graphql`
         featuredImg {
           childImageSharp {
             gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
+          }
+        }
+        thumb {
+          childImageSharp {
+            gatsbyImageData(
+              width: 500
+              placeholder: BLURRED
+              blurredOptions: { width: 100 }
+              transformOptions: { cropFocus: CENTER }
+              aspectRatio: 1.3
+            )
           }
         }
       }

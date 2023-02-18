@@ -5,6 +5,7 @@ import { LangType } from "../Locale";
 interface SEOProps {
   lang: LangType;
   title?: string;
+  siteImage?: string;
   description?: string;
   pathname?: string;
   children?: ReactNode;
@@ -13,11 +14,18 @@ interface SEOProps {
 // investigate:
 // https://www.gatsbyjs.com/docs/how-to/adding-common-features/adding-seo-component/#rich-snippets
 
-const SEO = ({ lang, title, description, pathname, children }: SEOProps) => {
+const SEO = ({
+  lang,
+  title,
+  description,
+  siteImage,
+  pathname,
+  children,
+}: SEOProps) => {
   const {
     title: defaultTitle,
     description: defaultDescription,
-    siteImage,
+    siteImage: defaultSiteImage,
     siteUrl,
     twitterUsername,
   } = useSiteMetadata();
@@ -25,7 +33,7 @@ const SEO = ({ lang, title, description, pathname, children }: SEOProps) => {
   const seo: { [key: string]: string } = {
     title: title || defaultTitle,
     description: description || defaultDescription,
-    image: `${siteUrl}${siteImage}`,
+    image: `${siteUrl}${siteImage || defaultSiteImage}`,
     url: `${siteUrl}${pathname || ``}`,
     twitterUsername,
   };

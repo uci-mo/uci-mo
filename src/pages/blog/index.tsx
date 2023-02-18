@@ -72,7 +72,7 @@ export const Head: HeadFC<HeadProps<Queries.BlogIndexPageQuery>> = (
 
   return (
     <SEO
-      title={t("page.blog.title")}
+      title={`${t("seo.title")} | ${t("page.blog.title")}`}
       description={t("page.blog.p")}
       lang={
         ((pageContext as { language: LangType }).language ||
