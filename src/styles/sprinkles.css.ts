@@ -3,22 +3,8 @@ import {
   defineProperties,
   createMapValueFn,
 } from "@vanilla-extract/sprinkles";
+import { BreakpointKey, breakpointKeys, breakpoints } from "./constants";
 import { ve } from "./theme.css";
-
-const breakpointKeys = ["xs", "sm", "md", "lg", "xl", "xxl"] as const;
-type BreakpointKey = typeof breakpointKeys[number];
-export const breakpoints: Record<
-  BreakpointKey,
-  { screen: number; el: number | string }
-> = {
-  xs: { screen: 0, el: 0 },
-  // min screen width, max element width
-  sm: { screen: 576, el: 540 },
-  md: { screen: 768, el: 720 },
-  lg: { screen: 992, el: 960 },
-  xl: { screen: 1200, el: 1140 },
-  xxl: { screen: 1400, el: 1320 },
-} as const;
 
 export const conditions = breakpointKeys.reduce(
   (acc, breakpointKey, bi) => ({
@@ -38,8 +24,11 @@ const responsiveProperties = defineProperties({
   defaultCondition: breakpointKeys[0],
   responsiveArray: breakpointKeys,
   properties: {
-    fontSize: ve.fontSize,
-    lineHeight: ve.lineHeight,
+    display: ["none", "flex"],
+    flexDirection: ["row", "column"],
+    alignItems: ["stretch", "flex-start", "center", "flex-end"],
+    justifyContent: ["stretch", "flex-start", "center", "flex-end"],
+    gap: ve.space,
     paddingTop: ve.space,
     paddingBottom: ve.space,
     paddingLeft: ve.space,
@@ -48,6 +37,10 @@ const responsiveProperties = defineProperties({
     marginBottom: ve.space,
     marginLeft: ve.space,
     marginRight: ve.space,
+    // borderRadius: ve.borderRadius,
+    // fontFamily: ve.fonts.body,
+    fontSize: ve.fontSize,
+    lineHeight: ve.lineHeight,
   },
   shorthands: {
     text: ["fontSize", "lineHeight"],
@@ -59,6 +52,24 @@ const responsiveProperties = defineProperties({
     my: ["marginTop", "marginBottom"],
   },
 });
-export const sprinkles = createSprinkles(responsiveProperties);
+
+const colorModeProperties = defineProperties({
+  conditions: {
+    lightMode: {
+      //  "@media": "(prefers-color-scheme: light)"
+    },
+    darkMode: { "@media": "(prefers-color-scheme: dark)" },
+  },
+  defaultCondition: "lightMode",
+  properties: {
+    color: ve.colors,
+    background: ve.colors,
+  },
+});
+
+export const sprinkles = createSprinkles(
+  responsiveProperties,
+  colorModeProperties
+);
 
 export const mapResponsiveValue = createMapValueFn(responsiveProperties);

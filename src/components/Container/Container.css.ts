@@ -1,6 +1,5 @@
 import { style } from "@vanilla-extract/css";
-
-import { breakpoints, sprinkles as s } from "../../styles/sprinkles.css";
+import { breakpoints } from "../../styles/constants";
 
 const responsiveMedia: Record<
   `screen and (min-width: ${number}px)`,

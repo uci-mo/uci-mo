@@ -1,5 +1,6 @@
 import type { GatsbyConfig } from "gatsby";
 import { languages, defaultLanguage } from "./src/components/Locale";
+import { breakpoints } from "./src/styles/constants";
 
 const siteUrl = "https://uci-mo.netlify.app/";
 
@@ -44,6 +45,7 @@ const config: GatsbyConfig = {
         },
       },
     },
+    "gatsby-plugin-image",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     {
@@ -81,7 +83,7 @@ const config: GatsbyConfig = {
           {
             resolve: `gatsby-remark-images`,
             options: {
-              maxWidth: 1200,
+              maxWidth: breakpoints.xxl.el,
             },
           },
         ],
