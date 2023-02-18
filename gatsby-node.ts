@@ -4,10 +4,10 @@ import {
   languages,
   defaultLanguage,
   getLocalePathPrefix,
-} from "./src/utils/language";
+} from "./src/components/Locale";
 
 const postTemplate = path.resolve(
-  `./src/components/templates/PostTemplate.tsx`
+  `./src/components/PostTemplate/PostTemplate.tsx`
 );
 
 export const createPages: GatsbyNode["createPages"] = async ({

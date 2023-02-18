@@ -1,6 +1,6 @@
 import React from "react";
-import { defaultLanguage } from "./language";
 import { useI18next } from "gatsby-plugin-react-i18next";
+import { defaultLanguage } from "../components/Locale";
 
 export function formatIntlDate(
   date: string | undefined,
@@ -8,7 +8,7 @@ export function formatIntlDate(
 ) {
   const usedLang = lang || defaultLanguage;
   return (date ? new Date(date) : new Date())
-    .toLocaleDateString(lang)
+    .toLocaleDateString(usedLang)
     .replaceAll(" ", "");
 }
 

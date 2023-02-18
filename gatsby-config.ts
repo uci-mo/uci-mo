@@ -1,14 +1,15 @@
 import type { GatsbyConfig } from "gatsby";
-import { languages, defaultLanguage } from "./src/utils/language";
+import { languages, defaultLanguage } from "./src/components/Locale";
 
 const siteUrl = "https://uci-mo.netlify.app/";
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: "seo.title",
-    description: "seo.description",
+    title: "УчиМо",
+    description:
+      "УчиМо је сајт који сведочи покушајима да Мо научи нешто ново научи и покаже.",
     twitterUsername: `@uci-mo`,
-    siteImage: `/banner.jpg`,
+    siteImage: `/uci-mo-banner.jpg`,
     siteUrl,
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
@@ -63,7 +64,7 @@ const config: GatsbyConfig = {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "locale",
-        path: `${__dirname}/src/locales`,
+        path: `${__dirname}/src/components/Locale/translations`,
       },
     },
     {

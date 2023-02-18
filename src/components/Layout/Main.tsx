@@ -45,7 +45,7 @@ export default function Main({ children }: PropsWithChildren) {
     },
     onStart: updateMainHeight,
     onDestroyed: updateMainHeight,
-    easing: easings.easeInOutBounce,
+    // easing: easings.easeInOutBounce,
   });
 
   return (

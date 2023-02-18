@@ -3,13 +3,13 @@ import { graphql, HeadFC, HeadProps, PageProps } from "gatsby";
 import { useI18next } from "gatsby-plugin-react-i18next";
 
 import { SEO } from "../components/SEO";
+import Container from "../components/Container";
 import {
   defaultLanguage,
   getSEOtranslateFn,
   LangType,
   LocaleTDataObj,
-} from "../utils/language";
-import Container from "../components/Container";
+} from "../components/Locale";
 
 const docLinks = [
   {

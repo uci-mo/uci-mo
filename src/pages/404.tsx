@@ -8,7 +8,7 @@ import {
   getSEOtranslateFn,
   LangType,
   LocaleTDataObj,
-} from "../utils/language";
+} from "../components/Locale";
 import Container from "../components/Container";
 
 const NotFoundPage: React.FC<PageProps> = () => {

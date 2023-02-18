@@ -9,7 +9,7 @@ import {
   getSEOtranslateFn,
   LangType,
   LocaleTDataObj,
-} from "../../utils/language";
+} from "../../components/Locale";
 import { SEO } from "../../components/SEO";
 import Container from "../../components/Container";
 

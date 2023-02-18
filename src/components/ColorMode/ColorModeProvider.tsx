@@ -1,5 +1,5 @@
 import React, { createContext, ReactNode, useEffect, useState } from "react";
-import { lightTheme, darkTheme } from "../styles/theme.css";
+import { lightTheme, darkTheme } from "../../styles/theme.css";
 
 export const colorModes = ["light", "dark"] as const;
 type ColorMode = typeof colorModes[number];

@@ -1,5 +1,5 @@
 import React, { cloneElement, createElement, isValidElement } from "react";
-import ColorModeProvider from "./src/providers/ColorModeProvider";
+import { ColorModeProvider } from "./src/components/ColorMode";
 import Layout from "./src/components/Layout";
 import "./src/styles/global.css";
 import { overlayContainerId } from "./src/utils/useOverlayPortal";

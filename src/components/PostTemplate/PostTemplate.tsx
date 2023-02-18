@@ -5,7 +5,7 @@ import { Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 
 import { formatIntlDate } from "../../utils/date";
-import { defaultLanguage, LangType } from "../../utils/language";
+import { defaultLanguage, LangType } from "../Locale";
 import { SEO } from "../SEO";
 import Container from "../Container";
 

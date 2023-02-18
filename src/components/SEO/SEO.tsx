@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
-import { useSiteMetadata } from "../utils/useSiteMetadata";
-import { LangType } from "../utils/language";
+import { useSiteMetadata } from "../../utils/useSiteMetadata";
+import { LangType } from "../Locale";
 
 interface SEOProps {
   lang: LangType;
@@ -13,13 +13,7 @@ interface SEOProps {
 // investigate:
 // https://www.gatsbyjs.com/docs/how-to/adding-common-features/adding-seo-component/#rich-snippets
 
-export const SEO = ({
-  lang,
-  title,
-  description,
-  pathname,
-  children,
-}: SEOProps) => {
+const SEO = ({ lang, title, description, pathname, children }: SEOProps) => {
   const {
     title: defaultTitle,
     description: defaultDescription,
@@ -58,3 +52,5 @@ export const SEO = ({
     </>
   );
 };
+
+export default SEO;
