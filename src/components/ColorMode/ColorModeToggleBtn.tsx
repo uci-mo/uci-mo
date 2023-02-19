@@ -6,6 +6,7 @@ export default function ColorModeToggleBtn() {
   return (
     <button
       onClick={() => setColorMode(colorMode === "dark" ? "light" : "dark")}
+      aria-label={`${colorMode} mode`}
     >
       {colorMode}
     </button>
