@@ -1,9 +1,10 @@
 import React, { PropsWithChildren } from "react";
-import { graphql, HeadFC, HeadProps } from "gatsby";
-import { MDXProvider } from "@mdx-js/react";
-import { Link } from "gatsby";
+import { graphql, HeadFC } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 
+import { SEO } from "../SEO";
+import Container from "../basic/Container";
+import MDX from "./MDX";
 import { formatIntlDate } from "../../utils/date";
 import {
   defaultLanguage,
@@ -11,10 +12,6 @@ import {
   LangType,
   LocaleTDataObj,
 } from "../Locale";
-import { SEO } from "../SEO";
-import Container from "../Container";
-
-const shortcodes = { Link }; // Provide common components here
 
 export default function PostTemplate({
   data,
@@ -44,7 +41,7 @@ export default function PostTemplate({
           alt={`Featured img for: ${title}, file name: ${data.mdx?.internal.contentFilePath}`}
         />
       )}
-      <MDXProvider components={shortcodes}>{children}</MDXProvider>
+      <MDX>{children}</MDX>
     </Container>
   );
 }

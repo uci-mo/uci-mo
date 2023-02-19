@@ -3,8 +3,8 @@ import {
   defineProperties,
   createMapValueFn,
 } from "@vanilla-extract/sprinkles";
-import { BreakpointKey, breakpointKeys, breakpoints } from "./constants";
-import { ve } from "./theme.css";
+import { BreakpointKey, breakpointKeys, breakpoints } from "./constants.css";
+import { darkColorMode, lightColorMode, ve } from "./theme.css";
 
 export const conditions = breakpointKeys.reduce(
   (acc, breakpointKey, bi) => ({
@@ -19,12 +19,14 @@ export const conditions = breakpointKeys.reduce(
   {}
 ) as Record<BreakpointKey, Record<"@media", string>>;
 
+// const borderWidth = createVar();
+
 const responsiveProperties = defineProperties({
   conditions,
   defaultCondition: breakpointKeys[0],
   responsiveArray: breakpointKeys,
   properties: {
-    display: ["none", "flex"],
+    display: ["none", "block", "flex"],
     flexDirection: ["row", "column"],
     alignItems: ["stretch", "flex-start", "center", "flex-end"],
     justifyContent: ["stretch", "flex-start", "center", "flex-end"],
@@ -37,28 +39,47 @@ const responsiveProperties = defineProperties({
     marginBottom: ve.space,
     marginLeft: ve.space,
     marginRight: ve.space,
+    width: ["100vw", "100%"],
+    height: ["100vh", "100%"],
     // borderRadius: ve.borderRadius,
     // fontFamily: ve.fonts.body,
-    fontSize: ve.fontSize,
-    lineHeight: ve.lineHeight,
+    // fontSize: ve.fontSize,
+    // lineHeight: ve.lineHeight,
+    // textAlign: ["center"]
+    // border: mapValues(vars.border.color, (value) => ({
+    //   vars: { [borderWidth]: "1px" },
+    //   border: `${borderWidth} solid ${value}`
+    // })),
+    // borderWidth: mapValues(vars.border.width, (value) => ({
+    //   vars: { [borderWidth]: value }
+    // })),
   },
   shorthands: {
-    text: ["fontSize", "lineHeight"],
     p: ["paddingTop", "paddingBottom", "paddingLeft", "paddingRight"],
     px: ["paddingLeft", "paddingRight"],
     py: ["paddingTop", "paddingBottom"],
+    ps: ["paddingLeft"],
+    pe: ["paddingRight"],
+    pt: ["paddingTop"],
+    pb: ["paddingBottom"],
     m: ["marginTop", "marginBottom", "marginLeft", "marginRight"],
     mx: ["marginLeft", "marginRight"],
     my: ["marginTop", "marginBottom"],
+    ms: ["marginLeft"],
+    me: ["marginRight"],
+    mt: ["marginTop"],
+    mb: ["marginBottom"],
   },
 });
 
 const colorModeProperties = defineProperties({
   conditions: {
     lightMode: {
-      //  "@media": "(prefers-color-scheme: light)"
+      selector: `${lightColorMode} &`,
     },
-    darkMode: { "@media": "(prefers-color-scheme: dark)" },
+    darkMode: {
+      selector: `${darkColorMode} &`,
+    },
   },
   defaultCondition: "lightMode",
   properties: {

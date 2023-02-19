@@ -3,7 +3,7 @@ import { ColorModeToggleBtn } from "../../ColorMode";
 // import { Link, navigate } from "gatsby";
 import { Link as LinkI18, useI18next } from "gatsby-plugin-react-i18next";
 // import { pageTransitionDuration } from "../Main";
-import Container from "../../Container";
+import Container from "../../basic/Container";
 import { LocaleToggleBtn } from "../../Locale";
 
 const routes: { to: string; t: string }[] = [

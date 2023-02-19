@@ -1,19 +1,11 @@
-import React, {
-  createContext,
-  ReactNode,
-  useCallback,
-  useEffect,
-  useState,
-} from "react";
-import { lightTheme, darkTheme } from "../../styles/theme.css";
-
-console.log("lightTheme", lightTheme);
+import React, { createContext, ReactNode, useCallback, useState } from "react";
+import { lightColorMode, darkColorMode } from "../../styles/theme.css";
 
 export const colorModes = ["light", "dark"] as const;
 type ColorMode = typeof colorModes[number];
 const colorModesMap: { [key in ColorMode]: string } = {
-  light: lightTheme,
-  dark: darkTheme,
+  light: lightColorMode,
+  dark: darkColorMode,
 };
 const defaultColorMode = colorModes[0];
 const colorModeLSKey = "COLOR_MODE";
@@ -36,7 +28,10 @@ function getInitialColorMode(): ColorMode {
   }
 
   document.documentElement.classList.add(colorModesMap[usedColorMode]);
-  document.documentElement.setAttribute("color-schreme", usedColorMode);
+  document.documentElement.setAttribute(
+    "style",
+    `color-scheme: ${usedColorMode}`
+  );
 
   return usedColorMode;
 }
@@ -63,7 +58,10 @@ export default function ColorModeProvider({
       ...colorModes.map((t) => colorModesMap[t])
     );
     document.documentElement.classList.add(colorModesMap[colorMode]);
-    document.documentElement.setAttribute("color-schreme", colorMode);
+    document.documentElement.setAttribute(
+      "style",
+      `color-scheme: ${colorMode}`
+    );
     setColorMode(colorMode);
     try {
       localStorage.setItem(colorModeLSKey, colorMode);

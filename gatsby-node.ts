@@ -6,9 +6,7 @@ import {
   getLocalePathPrefix,
 } from "./src/components/Locale";
 
-const postTemplate = path.resolve(
-  `./src/components/PostTemplate/PostTemplate.tsx`
-);
+const postTemplate = path.resolve(`./src/components/markdown/PostTemplate.tsx`);
 
 export const createPages: GatsbyNode["createPages"] = async ({
   graphql,

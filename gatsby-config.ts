@@ -1,6 +1,6 @@
 import type { GatsbyConfig } from "gatsby";
 import { languages, defaultLanguage } from "./src/components/Locale";
-import { breakpoints } from "./src/styles/constants";
+import { breakpoints } from "./src/styles/constants.css";
 
 const siteUrl = "https://uci-mo.netlify.app/";
 

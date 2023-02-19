@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import { useI18next } from "gatsby-plugin-react-i18next";
-import Container from "../Container";
+import Container from "../basic/Container";
 
 export default function Footer() {
   const { t } = useI18next();

@@ -9,7 +9,7 @@ import {
   LocaleTDataObj,
 } from "../components/Locale";
 import { SEO } from "../components/SEO";
-import Container from "../components/Container";
+import Container from "../components/basic/Container";
 
 // ko sto kaze:
 // https://www.buymeacoffee.com/

@@ -9,7 +9,7 @@ import {
   LangType,
   LocaleTDataObj,
 } from "../components/Locale";
-import Container from "../components/Container";
+import Container from "../components/basic/Container";
 
 const NotFoundPage: React.FC<PageProps> = () => {
   const { t } = useI18next();

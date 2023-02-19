@@ -1,5 +1,5 @@
 import { globalStyle } from "@vanilla-extract/css";
-import { ve } from "./theme.css";
+import { darkColorMode, lightColorMode, ve } from "./theme.css";
 
 globalStyle("*, *::before, *::after", {
   boxSizing: "border-box",
@@ -7,16 +7,26 @@ globalStyle("*, *::before, *::after", {
 
 globalStyle("html", {
   overflowY: "scroll",
-});
-
-globalStyle("html, body", {
-  margin: 0,
   height: "100%",
-  fontSize: "100%",
+  textRendering: "optimizeLegibility",
   fontFamily:
     '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
-  lineHeight: 1.5,
+  // lineHeight: 1.5,
+  // fontSize: "100%",
+  fontSize: "16px",
   WebkitFontSmoothing: "antialiased",
+  colorScheme: "light",
+});
+globalStyle(`html.${lightColorMode}`, {
+  colorScheme: "light",
+});
+globalStyle(`html.${darkColorMode}`, {
+  colorScheme: "dark",
+});
+
+globalStyle("body", {
+  margin: 0,
+  height: "100%",
 });
 
 globalStyle("#___gatsby", {

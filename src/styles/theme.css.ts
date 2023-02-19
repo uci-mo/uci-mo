@@ -2,28 +2,27 @@ import {
   createGlobalTheme,
   createTheme,
   createThemeContract,
-  globalStyle,
 } from "@vanilla-extract/css";
-import { colors, proportionalSizes } from "./constants";
+import { colors, proportionalSizes } from "./constants.css";
 
-const root = createGlobalTheme(":root", {
+const rootVars = createGlobalTheme(":root", {
   colors,
   ...proportionalSizes,
 });
 
 const theme = createThemeContract({
-  primary: null,
-  secondary: null,
-  background: null,
+  primary: "",
+  secondary: "",
+  background: "",
   text: {
-    normal: null,
-    dimmed: null,
-    link: null,
-    linkHover: null,
+    normal: "",
+    dimmed: "",
+    link: "",
+    linkHover: "",
   },
 });
 
-export const lightTheme = createTheme(theme, {
+export const lightColorMode = createTheme(theme, {
   primary: colors.blue700,
   secondary: colors.yellow600,
   background: colors.white,
@@ -35,7 +34,7 @@ export const lightTheme = createTheme(theme, {
   },
 });
 
-export const darkTheme = createTheme(theme, {
+export const darkColorMode = createTheme(theme, {
   primary: colors.blue400,
   secondary: colors.yellow500,
   background: colors.black,
@@ -47,4 +46,4 @@ export const darkTheme = createTheme(theme, {
   },
 });
 
-export const ve = { ...root, theme };
+export const ve = { ...rootVars, theme };

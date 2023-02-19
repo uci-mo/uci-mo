@@ -3,7 +3,7 @@ import { graphql, HeadFC, HeadProps, PageProps } from "gatsby";
 import { useI18next } from "gatsby-plugin-react-i18next";
 
 import { SEO } from "../components/SEO";
-import Container from "../components/Container";
+import Container from "../components/basic/Container";
 import {
   defaultLanguage,
   getSEOtranslateFn,

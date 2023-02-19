@@ -90,25 +90,26 @@ export const colors = {
 
 export const proportionalSizes = {
   space: {
-    xs: "4px",
-    sm: "8px",
-    md: "16px",
-    lg: "32px",
-    xl: "64px",
-    xxl: "128px",
+    1: "4px",
+    2: "8px",
+    3: "16px",
+    4: "32px",
+    5: "64px",
+    6: "128px",
   },
+  // https://vanilla-extract.style/documentation/global-api/global-font-face/
   fonts: {
     heading: "Georgia, Times, Times New Roman, serif",
     body: "system-ui",
     code: "",
   },
   fontSize: {
-    xs: "12px",
-    sm: "16px",
-    md: "20px",
-    lg: "36px",
-    xl: "52px",
-    xxl: "72px",
+    1: "12px",
+    2: "16px",
+    3: "20px",
+    4: "36px",
+    5: "52px",
+    6: "72px",
   },
   lineHeight: {
     small: "24px",
