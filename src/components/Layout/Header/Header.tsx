@@ -44,7 +44,9 @@ export default function Header({ location }: HeaderProps) {
                   to={route.to}
                   activeClassName=""
                   activeStyle={{
-                    borderLeft: "10px solid red",
+                    border: "10px solid transparent",
+                    borderRightColor: "red",
+                    borderRadius: "50%",
                   }}
                 >
                   <span
