@@ -1,20 +1,20 @@
-import React, { cloneElement, createElement, isValidElement } from "react";
-import { ColorModeProvider } from "./src/components/ColorMode";
-import Layout from "./src/components/Layout";
-import "./src/styles/global.css";
-import { overlayContainerId } from "./src/utils/useOverlayPortal";
+import React, { cloneElement, createElement, isValidElement } from 'react';
 import {
   GatsbyBrowser,
   WrapPageElementBrowserArgs,
-  WrapRootElementBrowserArgs,
-} from "gatsby";
+  WrapRootElementBrowserArgs
+} from 'gatsby';
+import './src/styles/global.css';
+import { ColorModeProvider } from './src/components/ColorMode';
+import Layout from './src/components/Layout';
+import { overlayContainerId } from './src/utils/useOverlayPortal';
 
 // Called when the initial (but not subsequent) render of Gatsby App is done on the client.
 // exports.onInitialClientRender = () => {
 //   console.log("ReactDOM.render has executed")
 // }
 
-//Called when the Gatsby browser runtime first starts.
+// Called when the Gatsby browser runtime first starts.
 // exports.onClientEntry = () => {
 //   console.log("We've started!")
 //   callAnalyticsAPI()
@@ -30,10 +30,11 @@ import {
 //   console.log("We can show loading indicator now")
 // }
 
-export const wrapRootElement: GatsbyBrowser["wrapRootElement"] = ({
-  element,
+export const wrapRootElement: GatsbyBrowser['wrapRootElement'] = ({
+  element
 }: WrapRootElementBrowserArgs) => {
-  console.log("elementRoot", element);
+  // eslint-disable-next-line no-console
+  console.log('elementRoot', element);
   return (
     <ColorModeProvider>
       {element}
@@ -42,11 +43,11 @@ export const wrapRootElement: GatsbyBrowser["wrapRootElement"] = ({
   );
 };
 
-export const wrapPageElement: GatsbyBrowser["wrapPageElement"] = ({
+export const wrapPageElement: GatsbyBrowser['wrapPageElement'] = ({
   element,
-  props,
-}: WrapPageElementBrowserArgs) => {
-  return cloneElement(
+  props
+}: WrapPageElementBrowserArgs) =>
+  cloneElement(
     element, // I18nextProvider
     element.props,
     isValidElement(element.props.children)
@@ -57,4 +58,3 @@ export const wrapPageElement: GatsbyBrowser["wrapPageElement"] = ({
         )
       : undefined
   );
-};

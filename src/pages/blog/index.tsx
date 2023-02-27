@@ -1,20 +1,19 @@
-import React from "react";
-import { graphql, HeadFC, HeadProps, Link, PageProps } from "gatsby";
-import { GatsbyImage } from "gatsby-plugin-image";
-import { useI18next } from "gatsby-plugin-react-i18next";
-
-import { formatIntlDate } from "../../utils/date";
+import React from 'react';
+import { graphql, HeadFC, HeadProps, Link, PageProps } from 'gatsby';
+import { GatsbyImage } from 'gatsby-plugin-image';
+import { useI18next } from 'gatsby-plugin-react-i18next';
+import Container from '../../components/basic/Container';
 import {
   defaultLanguage,
   getSEOtranslateFn,
   LangType,
-  LocaleTDataObj,
-} from "../../components/Locale";
-import { SEO } from "../../components/SEO";
-import Container from "../../components/basic/Container";
+  LocaleTDataObj
+} from '../../components/Locale';
+import SEO from '../../components/SEO';
+import { formatIntlDate } from '../../utils/date';
 
 const BlogIndexPage: React.FC<PageProps<Queries.BlogIndexPageQuery>> = ({
-  data,
+  data
 }) => {
   const { t, language } = useI18next();
 
@@ -26,9 +25,9 @@ const BlogIndexPage: React.FC<PageProps<Queries.BlogIndexPageQuery>> = ({
 
   return (
     <Container>
-      <h1>{t("page.blog.title")}</h1>
-      <p>{t("page.blog.p")}</p>
-      <div style={{ display: "grid" }}>
+      <h1>{t('page.blog.title')}</h1>
+      <p>{t('page.blog.p')}</p>
+      <div style={{ display: 'grid' }}>
         {posts.map(({ id, frontmatter }) => {
           const slug = frontmatter?.slug;
           const title = frontmatter?.title;
@@ -57,7 +56,7 @@ const BlogIndexPage: React.FC<PageProps<Queries.BlogIndexPageQuery>> = ({
           );
         })}
       </div>
-      <Link to="/">{t("page.blog.goHomeLink")}</Link>.
+      <Link to="/">{t('page.blog.goHomeLink')}</Link>.
     </Container>
   );
 };
@@ -72,8 +71,8 @@ export const Head: HeadFC<HeadProps<Queries.BlogIndexPageQuery>> = (
 
   return (
     <SEO
-      title={`${t("seo.title")} | ${t("page.blog.title")}`}
-      description={t("page.blog.p")}
+      title={`${t('seo.title')} | ${t('page.blog.title')}`}
+      description={t('page.blog.p')}
       lang={
         ((pageContext as { language: LangType }).language ||
           defaultLanguage) as LangType

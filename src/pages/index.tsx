@@ -1,60 +1,59 @@
-import React from "react";
-import { graphql, HeadFC, HeadProps, PageProps } from "gatsby";
-import { useI18next } from "gatsby-plugin-react-i18next";
-
-import { SEO } from "../components/SEO";
-import Container from "../components/basic/Container";
+import React from 'react';
+import { graphql, HeadFC, HeadProps, PageProps } from 'gatsby';
+import { useI18next } from 'gatsby-plugin-react-i18next';
+import Container from '../components/basic/Container';
 import {
   defaultLanguage,
   getSEOtranslateFn,
   LangType,
-  LocaleTDataObj,
-} from "../components/Locale";
+  LocaleTDataObj
+} from '../components/Locale';
+import SEO from '../components/SEO';
 
 const docLinks = [
   {
-    text: "TypeScript Documentation",
-    url: "https://www.gatsbyjs.com/docs/how-to/custom-configuration/typescript/",
-    color: "#8954A8",
+    text: 'TypeScript Documentation',
+    url: 'https://www.gatsbyjs.com/docs/how-to/custom-configuration/typescript/',
+    color: '#8954A8'
   },
   {
-    text: "GraphQL Typegen Documentation",
-    url: "https://www.gatsbyjs.com/docs/how-to/local-development/graphql-typegen/",
-    color: "#8954A8",
-  },
+    text: 'GraphQL Typegen Documentation',
+    url: 'https://www.gatsbyjs.com/docs/how-to/local-development/graphql-typegen/',
+    color: '#8954A8'
+  }
 ];
 
 const links = [
   {
-    text: "Tutorial",
-    url: "https://www.gatsbyjs.com/docs/tutorial/",
-    color: "#E95800",
+    text: 'Tutorial',
+    url: 'https://www.gatsbyjs.com/docs/tutorial/',
+    color: '#E95800'
   },
   {
-    text: "How to Guides",
-    url: "https://www.gatsbyjs.com/docs/how-to/",
-    color: "#1099A8",
+    text: 'How to Guides',
+    url: 'https://www.gatsbyjs.com/docs/how-to/',
+    color: '#1099A8'
   },
   {
-    text: "Reference Guides",
-    url: "https://www.gatsbyjs.com/docs/reference/",
-    color: "#BC027F",
+    text: 'Reference Guides',
+    url: 'https://www.gatsbyjs.com/docs/reference/',
+    color: '#BC027F'
   },
   {
-    text: "Conceptual Guides",
-    url: "https://www.gatsbyjs.com/docs/conceptual/",
-    color: "#0D96F2",
+    text: 'Conceptual Guides',
+    url: 'https://www.gatsbyjs.com/docs/conceptual/',
+    color: '#0D96F2'
   },
   {
-    text: "Plugin Library",
-    url: "https://www.gatsbyjs.com/plugins",
-    color: "#8EB814",
+    text: 'Plugin Library',
+    url: 'https://www.gatsbyjs.com/plugins',
+    color: '#8EB814'
   },
   {
-    text: "Build and Host",
-    url: "https://www.gatsbyjs.com/cloud",
-    color: "#663399",
-  },
+    text: 'Build and Host',
+    url: 'https://www.gatsbyjs.com/cloud',
+    color: '#663399'
+  }
 ];
 
 const IndexPage: React.FC<PageProps> = (indexProps) => {
@@ -63,7 +62,7 @@ const IndexPage: React.FC<PageProps> = (indexProps) => {
   return (
     <Container>
       <h1>
-        <span>-- {t("page.home.title")} 🎉🎉🎉</span>
+        <span>-- {t('page.home.title')} 🎉🎉🎉</span>
       </h1>
       <h4>Documentation:</h4>
       <ul>
@@ -104,8 +103,8 @@ export const Head: HeadFC<HeadProps<Queries.LocalesQuery>> = (headProps) => {
 
   return (
     <SEO
-      title={t("seo.title")}
-      description={t("seo.description")}
+      title={t('seo.title')}
+      description={t('seo.description')}
       lang={
         ((pageContext as { language: LangType }).language ||
           defaultLanguage) as LangType

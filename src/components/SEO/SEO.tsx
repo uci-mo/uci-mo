@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { useSiteMetadata } from 'utils/useSiteMetadata';
+import { useSiteMetadata } from '../../utils/useSiteMetadata';
 import { LangType } from '../Locale';
 
 interface SEOProps {

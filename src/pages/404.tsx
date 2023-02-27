@@ -1,25 +1,24 @@
-import * as React from "react";
-import { HeadFC, PageProps, graphql, HeadProps } from "gatsby";
-import { useI18next, Link as Linki18n } from "gatsby-plugin-react-i18next";
-
-import { SEO } from "../components/SEO";
+import React, { FC } from 'react';
+import { graphql, HeadFC, HeadProps, PageProps } from 'gatsby';
+import { Link as Linki18n, useI18next } from 'gatsby-plugin-react-i18next';
+import Container from '../components/basic/Container';
 import {
   defaultLanguage,
   getSEOtranslateFn,
   LangType,
-  LocaleTDataObj,
-} from "../components/Locale";
-import Container from "../components/basic/Container";
+  LocaleTDataObj
+} from '../components/Locale';
+import SEO from '../components/SEO';
 
-const NotFoundPage: React.FC<PageProps> = () => {
+const NotFoundPage: FC<PageProps> = () => {
   const { t } = useI18next();
   return (
     <Container>
-      <h1>{t("page.404.title")}</h1>
+      <h1>{t('page.404.title')}</h1>
       <p>
-        {t("page.404.p")}
+        {t('page.404.p')}
         <br />
-        <Linki18n to="/">{t("page.404.goHomeLink")}</Linki18n>.
+        <Linki18n to="/">{t('page.404.goHomeLink')}</Linki18n>.
       </p>
     </Container>
   );
@@ -33,8 +32,8 @@ export const Head: HeadFC<HeadProps<unknown>> = (headProps) => {
 
   return (
     <SEO
-      title={`${t("seo.title")} | ${t("page.404.title")}`}
-      description={t("page.404.p")}
+      title={`${t('seo.title')} | ${t('page.404.title')}`}
+      description={t('page.404.p')}
       lang={
         ((pageContext as { language: LangType }).language ||
           defaultLanguage) as LangType

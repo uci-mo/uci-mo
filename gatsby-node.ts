@@ -1,17 +1,64 @@
-import path from "path";
-import { GatsbyNode } from "gatsby";
+import { GatsbyNode } from 'gatsby';
 import {
-  languages,
   defaultLanguage,
   getLocalePathPrefix,
-} from "./src/components/Locale";
+  languages
+} from './src/components/Locale';
+import path from 'path';
+
+// export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({
+//   actions
+// }) => {
+//   actions.setWebpackConfig({
+//     resolve: {
+//       modules: [path.resolve(__dirname, 'src'), 'node_modules']
+//     }
+//   });
+// };
+
+// export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = (
+//   props,
+//   pluginOptions
+// ) => {
+//   const { actions, getConfig } = props;
+//   console.log('props', props);
+
+//   const hasPluginOptions = Object.keys(pluginOptions).filter(
+//     (item) => item !== 'plugins'
+//   ).length;
+//   const config = getConfig();
+//   const contextSrc = path.join(config.context, 'src');
+//   const defaultModules = [contextSrc, 'node_modules'];
+
+//   const { plugins, resolveModules, ...aliasOptions } = pluginOptions;
+//   console.log('resolveModules', resolveModules);
+//   // if (hasPluginOptions) {
+//   //   const modules = resolveModules
+//   //     ? [...(resolveModules as []), ...defaultModules]
+//   //     : defaultModules;
+
+//   //   actions.setWebpackConfig({
+//   //     resolve: {
+//   //       alias: { src: contextSrc, ...aliasOptions },
+//   //       modules
+//   //     }
+//   //   });
+//   // } else {
+//     actions.setWebpackConfig({
+//       resolve: {
+//         alias: { src: contextSrc },
+//         modules: defaultModules
+//       }
+//     });
+//   // }
+// };
 
 const postTemplate = path.resolve(`./src/components/markdown/PostTemplate.tsx`);
 
-export const createPages: GatsbyNode["createPages"] = async ({
+export const createPages: GatsbyNode['createPages'] = async ({
   graphql,
   actions,
-  reporter,
+  reporter
 }) => {
   const { createPage } = actions;
 
@@ -33,7 +80,7 @@ export const createPages: GatsbyNode["createPages"] = async ({
   `);
 
   if (result.errors) {
-    reporter.panicOnBuild("Error loading MDX result", result.errors);
+    reporter.panicOnBuild('Error loading MDX result', result.errors);
   }
 
   const posts = result.data?.allMdx.nodes || [];
@@ -53,11 +100,11 @@ export const createPages: GatsbyNode["createPages"] = async ({
         component: `${postTemplate}?__contentFilePath=${node.internal.contentFilePath}`,
         // You can use the values in this context in our page layout component
         context: {
-          id: node.id,
-        },
+          id: node.id
+        }
       });
     } else {
-      reporter.panicOnBuild("Post node is incomplete");
+      reporter.panicOnBuild('Post node is incomplete');
     }
   });
 };

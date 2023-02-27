@@ -1,0 +1,7 @@
+# setup: https://www.youtube.com/watch?v=_fJL3fMKb44
+
+# exclude the next node in the abstract syntax tree from formatting:
+# JS // prettier-ignore
+# JSX {/* prettier-ignore */}
+# HTML <!-- prettier-ignore -->
+# CSS /* prettier-ignore */
