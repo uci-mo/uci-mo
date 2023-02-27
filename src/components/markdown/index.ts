@@ -1,3 +1,3 @@
-import PostTemplate from "./PostTemplate";
+import PostTemplate from './PostTemplate';
 
 export default PostTemplate;

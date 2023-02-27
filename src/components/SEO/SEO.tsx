@@ -1,6 +1,6 @@
-import React, { ReactNode } from "react";
-import { useSiteMetadata } from "../../utils/useSiteMetadata";
-import { LangType } from "../Locale";
+import React, { ReactNode } from 'react';
+import { useSiteMetadata } from 'utils/useSiteMetadata';
+import { LangType } from '../Locale';
 
 interface SEOProps {
   lang: LangType;
@@ -20,14 +20,14 @@ const SEO = ({
   description,
   siteImage,
   pathname,
-  children,
+  children
 }: SEOProps) => {
   const {
     title: defaultTitle,
     description: defaultDescription,
     siteImage: defaultSiteImage,
     siteUrl,
-    twitterUsername,
+    twitterUsername
   } = useSiteMetadata();
 
   const seo: { [key: string]: string } = {
@@ -35,7 +35,7 @@ const SEO = ({
     description: description || defaultDescription,
     image: `${siteUrl}${siteImage || defaultSiteImage}`,
     url: `${siteUrl}${pathname || ``}`,
-    twitterUsername,
+    twitterUsername
   };
 
   // console.log("language", language);
@@ -54,7 +54,8 @@ const SEO = ({
       <meta name="twitter:creator" content={seo.twitterUsername} />
       {/* <link
         rel="icon"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>👤</text></svg>"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' 
+        viewBox='0 0 100 100'><text y='0.9em' font-size='90'>👤</text></svg>"
       /> */}
       {children}
     </>

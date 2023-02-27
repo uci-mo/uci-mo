@@ -1,6 +1,13 @@
 import React, { PropsWithChildren } from "react";
 import { container } from "./Container.css";
 
-export default function Container({ children }: PropsWithChildren) {
-  return <div className={container}>{children}</div>;
+interface ContainerProps {
+  className?: string;
+}
+
+export default function Container({
+  children,
+  className = "",
+}: PropsWithChildren<ContainerProps>) {
+  return <div className={`${container} ${className}`}>{children}</div>;
 }

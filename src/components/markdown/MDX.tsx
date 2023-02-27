@@ -1,14 +1,12 @@
-import React, { PropsWithChildren } from "react";
-import { MDXProvider } from "@mdx-js/react";
-import type { Components as MDXComponents } from "@mdx-js/react/lib";
-import { Link } from "../basic/Link";
+import React, { PropsWithChildren } from 'react';
+import { Link } from '../basic/Link';
+import { MDXProvider } from '@mdx-js/react';
+import type { Components } from '@mdx-js/react/lib';
 
-const MDXComponents: MDXComponents = {
-  // Link,
-  // link: Link
+const MDXComponents: Components = {
   // Default components
   // https://mdxjs.com/table-of-components/
-  a: (props) => <Link {...props} to={props.href || ""} />,
+  a: (props) => <Link {...props} to={props.href || ''} />
   // code: (props) => <CodeBlock {...props} />,
   // h2: ({ children }) => {
   //   const id = slugify(children);
@@ -50,6 +48,8 @@ const MDXComponents: MDXComponents = {
   // pre: (props) => <Box marginY="6" {...props} />,
 };
 
-export default function MDX({ children }: PropsWithChildren) {
-  return <MDXProvider components={MDXComponents}>{children}</MDXProvider>;
-}
+const MDX = ({ children }: PropsWithChildren): JSX.Element => (
+  <MDXProvider components={MDXComponents}>{children}</MDXProvider>
+);
+
+export default MDX;

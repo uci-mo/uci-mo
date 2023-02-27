@@ -1,5 +1,5 @@
-import LocaleToggleBtn from "./LocaleToggleBtn";
+import LocaleToggleBtn from './LocaleToggleBtn';
 
-export * from "./utils";
-export * from "./constants";
+export * from './utils';
+export * from './constants';
 export { LocaleToggleBtn };

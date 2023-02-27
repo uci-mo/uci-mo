@@ -1,5 +1,5 @@
-import React, { PropsWithChildren } from "react";
-import { Link as Linki18n } from "gatsby-plugin-react-i18next";
+import React, { PropsWithChildren } from 'react';
+import { Link as Linki18n } from 'gatsby-plugin-react-i18next';
 
 export type LinkProps = {
   className?: string;
@@ -9,9 +9,9 @@ export type LinkProps = {
 export const Link = ({
   children,
   className,
-  to,
+  to
 }: PropsWithChildren<LinkProps>) => {
-  const external = to.startsWith("http");
+  const external = to.startsWith('http');
   if (external) {
     return (
       <a

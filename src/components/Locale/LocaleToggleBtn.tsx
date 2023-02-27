@@ -1,5 +1,5 @@
-import React from "react";
-import { Link as LinkI18, useI18next } from "gatsby-plugin-react-i18next";
+import React from 'react';
+import { Link as LinkI18, useI18next } from 'gatsby-plugin-react-i18next';
 
 export default function LocaleToggleBtn() {
   const { languages, originalPath, i18n } = useI18next();
@@ -37,8 +37,8 @@ export default function LocaleToggleBtn() {
             style={
               i18n.resolvedLanguage === lng
                 ? {
-                    borderLeft: "10px solid red",
-                    pointerEvents: "none",
+                    borderLeft: '10px solid red',
+                    pointerEvents: 'none'
                   }
                 : {}
             }

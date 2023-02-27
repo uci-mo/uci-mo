@@ -1,10 +1,10 @@
+import { BreakpointKey, breakpointKeys, breakpoints } from './constants.css';
+import { darkColorMode, lightColorMode, ve } from './theme.css';
 import {
-  createSprinkles,
-  defineProperties,
   createMapValueFn,
-} from "@vanilla-extract/sprinkles";
-import { BreakpointKey, breakpointKeys, breakpoints } from "./constants.css";
-import { darkColorMode, lightColorMode, ve } from "./theme.css";
+  createSprinkles,
+  defineProperties
+} from '@vanilla-extract/sprinkles';
 
 export const conditions = breakpointKeys.reduce(
   (acc, breakpointKey, bi) => ({
@@ -13,11 +13,11 @@ export const conditions = breakpointKeys.reduce(
       bi === 0
         ? {}
         : {
-            "@media": `screen and (min-width: ${breakpoints[breakpointKey].screen}px)`,
-          },
+            '@media': `screen and (min-width: ${breakpoints[breakpointKey].screen}px)`
+          }
   }),
   {}
-) as Record<BreakpointKey, Record<"@media", string>>;
+) as Record<BreakpointKey, Record<'@media', string>>;
 
 // const borderWidth = createVar();
 
@@ -26,10 +26,10 @@ const responsiveProperties = defineProperties({
   defaultCondition: breakpointKeys[0],
   responsiveArray: breakpointKeys,
   properties: {
-    display: ["none", "block", "flex"],
-    flexDirection: ["row", "column"],
-    alignItems: ["stretch", "flex-start", "center", "flex-end"],
-    justifyContent: ["stretch", "flex-start", "center", "flex-end"],
+    display: ['none', 'block', 'flex'],
+    flexDirection: ['row', 'column'],
+    alignItems: ['stretch', 'flex-start', 'center', 'flex-end'],
+    justifyContent: ['stretch', 'flex-start', 'center', 'flex-end'],
     gap: ve.space,
     paddingTop: ve.space,
     paddingBottom: ve.space,
@@ -39,8 +39,8 @@ const responsiveProperties = defineProperties({
     marginBottom: ve.space,
     marginLeft: ve.space,
     marginRight: ve.space,
-    width: ["100vw", "100%"],
-    height: ["100vh", "100%"],
+    width: ['100vw', '100%'],
+    height: ['100vh', '100%']
     // borderRadius: ve.borderRadius,
     // fontFamily: ve.fonts.body,
     // fontSize: ve.fontSize,
@@ -55,37 +55,37 @@ const responsiveProperties = defineProperties({
     // })),
   },
   shorthands: {
-    p: ["paddingTop", "paddingBottom", "paddingLeft", "paddingRight"],
-    px: ["paddingLeft", "paddingRight"],
-    py: ["paddingTop", "paddingBottom"],
-    ps: ["paddingLeft"],
-    pe: ["paddingRight"],
-    pt: ["paddingTop"],
-    pb: ["paddingBottom"],
-    m: ["marginTop", "marginBottom", "marginLeft", "marginRight"],
-    mx: ["marginLeft", "marginRight"],
-    my: ["marginTop", "marginBottom"],
-    ms: ["marginLeft"],
-    me: ["marginRight"],
-    mt: ["marginTop"],
-    mb: ["marginBottom"],
-  },
+    p: ['paddingTop', 'paddingBottom', 'paddingLeft', 'paddingRight'],
+    px: ['paddingLeft', 'paddingRight'],
+    py: ['paddingTop', 'paddingBottom'],
+    ps: ['paddingLeft'],
+    pe: ['paddingRight'],
+    pt: ['paddingTop'],
+    pb: ['paddingBottom'],
+    m: ['marginTop', 'marginBottom', 'marginLeft', 'marginRight'],
+    mx: ['marginLeft', 'marginRight'],
+    my: ['marginTop', 'marginBottom'],
+    ms: ['marginLeft'],
+    me: ['marginRight'],
+    mt: ['marginTop'],
+    mb: ['marginBottom']
+  }
 });
 
 const colorModeProperties = defineProperties({
   conditions: {
     lightMode: {
-      selector: `${lightColorMode} &`,
+      selector: `${lightColorMode} &`
     },
     darkMode: {
-      selector: `${darkColorMode} &`,
-    },
+      selector: `${darkColorMode} &`
+    }
   },
-  defaultCondition: "lightMode",
+  defaultCondition: 'lightMode',
   properties: {
     color: ve.colors,
-    background: ve.colors,
-  },
+    background: ve.colors
+  }
 });
 
 export const sprinkles = createSprinkles(

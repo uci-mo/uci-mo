@@ -1,21 +1,20 @@
-import React, { PropsWithChildren } from "react";
-import { graphql, HeadFC } from "gatsby";
-import { GatsbyImage } from "gatsby-plugin-image";
-
-import { SEO } from "../SEO";
-import Container from "../basic/Container";
-import MDX from "./MDX";
-import { formatIntlDate } from "../../utils/date";
+import React, { PropsWithChildren } from 'react';
+import { graphql, HeadFC } from 'gatsby';
+import { GatsbyImage } from 'gatsby-plugin-image';
+import { formatIntlDate } from '../../utils/date';
+import Container from '../basic/Container';
 import {
   defaultLanguage,
   getSEOtranslateFn,
   LangType,
-  LocaleTDataObj,
-} from "../Locale";
+  LocaleTDataObj
+} from '../Locale';
+import SEO from '../SEO';
+import MDX from './MDX';
 
 export default function PostTemplate({
   data,
-  children,
+  children: childrenMDX
 }: PropsWithChildren<{ data: Queries.PostTemplateQuery }>) {
   const title = data.mdx?.frontmatter?.title;
   const date = formatIntlDate(
@@ -41,7 +40,7 @@ export default function PostTemplate({
           alt={`Featured img for: ${title}, file name: ${data.mdx?.internal.contentFilePath}`}
         />
       )}
-      <MDX>{children}</MDX>
+      <MDX>{childrenMDX}</MDX>
     </Container>
   );
 }
@@ -49,7 +48,7 @@ export default function PostTemplate({
 export const Head: HeadFC<Queries.PostTemplateQuery> = ({
   location,
   pageContext,
-  data,
+  data
 }) => {
   const pCtx = pageContext as {
     language: LangType;
@@ -62,7 +61,7 @@ export const Head: HeadFC<Queries.PostTemplateQuery> = ({
   return (
     <SEO
       lang={(pCtx.language || defaultLanguage) as LangType}
-      title={`${t("seo.title")} | ${pCtx.frontmatter.title}`}
+      title={`${t('seo.title')} | ${pCtx.frontmatter.title}`}
       description={pCtx.frontmatter.description}
       pathname={location.pathname}
       siteImage={thumbImg?.images.fallback?.src}

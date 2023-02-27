@@ -1,27 +1,26 @@
-import { PageProps } from "gatsby";
 import React, {
   PropsWithChildren,
   useCallback,
   useEffect,
   useRef,
-  useState,
-} from "react";
-import { useTransition, animated, easings, useScroll } from "react-spring";
+  useState
+} from 'react';
+import { animated, useTransition } from 'react-spring';
 
 export const pageTransitionDuration = 700;
 
 export default function Main({ children }: PropsWithChildren) {
   const mainRef = useRef<HTMLDivElement>(null);
-  const [mainHeight, setMainHeight] = useState<number | "auto">("auto");
+  const [mainHeight, setMainHeight] = useState<number | 'auto'>('auto');
 
   const updateMainHeight = useCallback(() => {
     const mainHeight = mainRef.current?.offsetHeight;
-    setMainHeight(mainHeight || "auto");
+    setMainHeight(mainHeight || 'auto');
   }, []);
 
   useEffect(() => {
-    window.addEventListener("resize", updateMainHeight);
-    return () => window.removeEventListener("resize", updateMainHeight);
+    window.addEventListener('resize', updateMainHeight);
+    return () => window.removeEventListener('resize', updateMainHeight);
   }, []);
 
   const transitions = useTransition([children], {
@@ -29,22 +28,22 @@ export default function Main({ children }: PropsWithChildren) {
       // console.log("from", item, i);
       return {
         opacity: 0,
-        transform: "translate(50%, 0) scale(1.5)",
+        transform: 'translate(50%, 0) scale(1.5)'
       };
     },
     enter: {
       opacity: 1,
-      transform: "translate(0%, 0) scale(1)",
+      transform: 'translate(0%, 0) scale(1)'
     },
     leave: {
       opacity: 0,
-      transform: "translate(-50%, 0) scale(0.5)",
+      transform: 'translate(-50%, 0) scale(0.5)'
     },
     config: {
-      duration: pageTransitionDuration,
+      duration: pageTransitionDuration
     },
     onStart: updateMainHeight,
-    onDestroyed: updateMainHeight,
+    onDestroyed: updateMainHeight
     // easing: easings.easeInOutBounce,
   });
 
@@ -52,9 +51,9 @@ export default function Main({ children }: PropsWithChildren) {
     <div style={{ flexGrow: 1 }}>
       <div
         style={{
-          overflowY: "hidden",
+          overflowY: 'hidden',
           height: mainHeight,
-          transition: `height ${pageTransitionDuration}ms`,
+          transition: `height ${pageTransitionDuration}ms`
         }}
       >
         {/* scrolling transition to prevous position when clicking Back */}
@@ -62,13 +61,13 @@ export default function Main({ children }: PropsWithChildren) {
         <main
           ref={mainRef}
           style={{
-            overflow: "hidden",
-            display: "grid",
-            gridTemplate: '"main"',
+            overflow: 'hidden',
+            display: 'grid',
+            gridTemplate: '"main"'
           }}
         >
           {transitions((style, passedChildren) => (
-            <animated.div style={{ ...style, gridArea: "main" }}>
+            <animated.div style={{ ...style, gridArea: 'main' }}>
               {passedChildren}
             </animated.div>
           ))}

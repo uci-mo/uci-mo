@@ -1,8 +1,8 @@
-import React, { PropsWithChildren } from "react";
-import { PageProps } from "gatsby";
-import Footer from "./Footer";
-import Header from "./Header";
-import Main from "./Main";
+import React, { PropsWithChildren } from 'react';
+import { PageProps } from 'gatsby';
+import Footer from './Footer';
+import Header from './Header';
+import Main from './Main';
 
 // revisit Gatsby SLICE later: https://v5.gatsbyjs.com/docs/reference/built-in-components/gatsby-slice/
 // https://www.gatsbyjs.com/blog/how-to-use-function-props-with-gatsbys-slice-api/

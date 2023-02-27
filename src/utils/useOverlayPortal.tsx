@@ -1,7 +1,7 @@
-import React, { PropsWithChildren, useCallback } from "react";
-import { createPortal } from "react-dom";
+import React, { PropsWithChildren, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 
-export const overlayContainerId = "overlay-container";
+export const overlayContainerId = 'overlay-container';
 
 function getOverlayContainer() {
   const overlayContainer = document.getElementById(overlayContainerId);
@@ -10,7 +10,9 @@ function getOverlayContainer() {
     : document.body;
 }
 
-export default function useOverlayPortal() {
+export default function useOverlayPortal(): {
+  Portal: ({ children }: PropsWithChildren) => React.ReactPortal;
+} {
   const Portal = useCallback(
     ({ children }: PropsWithChildren) =>
       createPortal(children, getOverlayContainer()),

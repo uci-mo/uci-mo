@@ -1,4 +1,4 @@
-import ColorModeToggleBtn from "./ColorModeToggleBtn";
-import ColorModeProvider from "./ColorModeProvider";
+import ColorModeProvider from './ColorModeProvider';
+import ColorModeToggleBtn from './ColorModeToggleBtn';
 
 export { ColorModeToggleBtn, ColorModeProvider };
