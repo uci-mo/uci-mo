@@ -8,7 +8,8 @@ export default function Footer() {
     <footer style={{ borderTop: '1px solid black' }}>
       <Container>
         <p>
-          <Suspense fallback={null}>{new Date().getFullYear()}</Suspense> © ,{' '}
+          <Suspense fallback={null}>{new Date().getFullYear()}</Suspense> ©
+          {' - '}
           {t('footer.builtWith')}
           {` `}
           <a href="https://www.gatsbyjs.org">Gatsby</a>
