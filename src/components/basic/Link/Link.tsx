@@ -6,11 +6,7 @@ export type LinkProps = {
   to: string;
 };
 
-export const Link = ({
-  children,
-  className,
-  to
-}: PropsWithChildren<LinkProps>) => {
+const Link = ({ children, className, to }: PropsWithChildren<LinkProps>) => {
   const external = to.startsWith('http');
   if (external) {
     return (
@@ -31,3 +27,5 @@ export const Link = ({
     </Linki18n>
   );
 };
+
+export default Link;

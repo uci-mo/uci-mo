@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react';
-import { Link } from '../basic/Link';
+import Link from '../basic/Link';
 import { MDXProvider } from '@mdx-js/react';
 import type { Components } from '@mdx-js/react/lib';
 

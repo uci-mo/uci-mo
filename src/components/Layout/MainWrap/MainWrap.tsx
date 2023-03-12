@@ -6,21 +6,29 @@ import React, {
   useState
 } from 'react';
 import { animated, useTransition } from 'react-spring';
+import {
+  mainContent,
+  mainHtml,
+  mainInnerWrap,
+  mainOuterWrap
+} from './MainWrap.css';
+import { headerHeight } from '../Header';
+import { pageTransitionDuration } from './constants';
 
-export const pageTransitionDuration = 700;
+const mainGridArea = 'main';
 
-export default function Main({ children }: PropsWithChildren) {
+export default function MainWrap({ children }: PropsWithChildren) {
   const mainRef = useRef<HTMLDivElement>(null);
-  const [mainHeight, setMainHeight] = useState<number | 'auto'>('auto');
+  const [mainHeight, setMainWrapHeight] = useState<number | 'auto'>('auto');
 
-  const updateMainHeight = useCallback(() => {
+  const updateMainWrapHeight = useCallback(() => {
     const mainHeight = mainRef.current?.offsetHeight;
-    setMainHeight(mainHeight || 'auto');
+    setMainWrapHeight(mainHeight || 'auto');
   }, []);
 
   useEffect(() => {
-    window.addEventListener('resize', updateMainHeight);
-    return () => window.removeEventListener('resize', updateMainHeight);
+    window.addEventListener('resize', updateMainWrapHeight);
+    return () => window.removeEventListener('resize', updateMainWrapHeight);
   }, []);
 
   const transitions = useTransition([children], {
@@ -42,32 +50,43 @@ export default function Main({ children }: PropsWithChildren) {
     config: {
       duration: pageTransitionDuration
     },
-    onStart: updateMainHeight,
-    onDestroyed: updateMainHeight
+    onStart: updateMainWrapHeight,
+    onDestroyed: updateMainWrapHeight
     // easing: easings.easeInOutBounce,
   });
 
   return (
-    <div style={{ flexGrow: 1 }}>
+    <div
+      // className={mainOuterWrap}
+      style={{
+        flexGrow: 1,
+        marginTop: headerHeight
+      }}
+    >
       <div
+        // className={mainInnerWrap}
         style={{
           overflowY: 'hidden',
-          height: mainHeight,
-          transition: `height ${pageTransitionDuration}ms`
+          transition: `height ${pageTransitionDuration}ms`,
+          height: mainHeight
         }}
       >
         {/* scrolling transition to prevous position when clicking Back */}
         {/* https://janessagarrow.com/blog/gatsby-framer-motion-page-transitions/#bonus */}
         <main
           ref={mainRef}
+          //  className={mainHtml}
           style={{
             overflow: 'hidden',
             display: 'grid',
-            gridTemplate: '"main"'
+            gridTemplate: `"${mainGridArea}"`
           }}
         >
           {transitions((style, passedChildren) => (
-            <animated.div style={{ ...style, gridArea: 'main' }}>
+            <animated.div
+              style={{ ...style, gridArea: mainGridArea }}
+              //  className={mainContent}
+            >
               {passedChildren}
             </animated.div>
           ))}

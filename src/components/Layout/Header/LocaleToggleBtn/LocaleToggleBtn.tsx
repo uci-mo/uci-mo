@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link as LinkI18, useI18next } from 'gatsby-plugin-react-i18next';
+import { langBtn, langBtnActive, langBtnsList } from './LocaleToggleBtn.css';
 
 export default function LocaleToggleBtn() {
   const { languages, originalPath, i18n } = useI18next();
@@ -28,20 +29,15 @@ export default function LocaleToggleBtn() {
   // getLangRoutePrefix(i18.language)
 
   return (
-    <ul className="languages">
+    <ul className={langBtnsList}>
       {languages.map((lng) => (
         <li key={lng}>
           <LinkI18
             to={originalPath}
             language={lng}
-            style={
-              i18n.resolvedLanguage === lng
-                ? {
-                    borderLeft: '10px solid red',
-                    pointerEvents: 'none'
-                  }
-                : {}
-            }
+            className={`${langBtn} ${
+              i18n.resolvedLanguage === lng && langBtnActive
+            }`}
           >
             {lng}
           </LinkI18>

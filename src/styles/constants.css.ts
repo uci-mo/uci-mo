@@ -90,6 +90,7 @@ export const colors = {
 
 export const proportionalSizes = {
   space: {
+    0: '0px',
     1: '4px',
     2: '8px',
     3: '16px',

@@ -25,6 +25,7 @@ export const container = style([
     'marginLeft': 'auto',
     'marginRight': 'auto',
     'maxWidth': '100%',
+    'height': '100%',
     'paddingLeft': ve.space[3],
     'paddingRight': ve.space[3],
 

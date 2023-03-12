@@ -28,10 +28,6 @@ function getInitialColorMode(): ColorMode {
   }
 
   document.documentElement.classList.add(colorModesMap[usedColorMode]);
-  document.documentElement.setAttribute(
-    'style',
-    `color-scheme: ${usedColorMode}`
-  );
 
   return usedColorMode;
 }
